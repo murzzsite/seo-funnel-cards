@@ -1,291 +1,88 @@
 <!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
+<html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Карточки SEO-воронки</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Сообщения SEO-воронки</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --accent:#2563EB; --accent-dark:#1d4ed8; --accent-light:#eff6ff; --accent-mid:#dbeafe;
-    --bg:#eef2f9; --bg-2:#f8faff; --text:#0f172a; --text-2:#475569; --text-3:#94a3b8; --border:#e2e8f0;
-    --green:#16a34a; --green-light:#dcfce7; --amber-light:#fef3c7; --amber:#92400e;
-    --radius:16px; --radius-sm:10px; --shadow:0 4px 24px rgba(37,99,235,.08);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);font-size:14px;line-height:1.5}
-  .top{max-width:860px;margin:0 auto;padding:28px 16px 8px}
-  .top h1{font-family:'Space Grotesk',sans-serif;font-size:26px}
-  .top p{color:var(--text-2);margin-top:6px}
-  nav{max-width:860px;margin:12px auto 0;padding:0 16px;display:flex;flex-wrap:wrap;gap:8px}
-  nav a{background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--accent-dark);text-decoration:none;font-weight:500}
-  .block{max-width:860px;margin:36px auto 0;padding:0 16px}
-  .label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:var(--text-2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-  .btn{font:600 13px 'Inter',sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:7px 14px;cursor:pointer}
-  .btn.ghost{background:#fff;color:var(--accent-dark);border:1px solid var(--accent-mid)}
-  .scroll{overflow-x:auto}
-
-  /* ===== карточка для скрина ===== */
-  .shot{width:794px;background:#fff;margin:0 auto;padding:32px 0 36px;border-radius:12px}
-  .hero{background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:var(--radius);padding:38px 44px;margin:0 32px;color:#fff;position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(255,255,255,.08);border-radius:50%}
-  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:10px}
-  .hero h2{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.01em}
-  .hero p{margin-top:14px;font-size:15px;color:#dbeafe;max-width:560px}
-  .content{padding:28px 32px 0}
-  .cards{display:flex;flex-direction:column;gap:14px}
-  .card{background:var(--bg-2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:20px 24px;box-shadow:var(--shadow)}
-  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .ico{width:34px;height:34px;border-radius:10px;background:var(--accent-mid);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-  .ct{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600}
-  .card p{color:var(--text-2);font-size:14px}
-  .card p b,.rt b{color:var(--text)}
-  .row{display:flex;gap:10px;align-items:flex-start;padding:5px 0}
-  .tag{flex-shrink:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-top:1px}
-  .tag.us{background:var(--accent-mid);color:var(--accent-dark)} .tag.you{background:var(--green-light);color:#15803d}
-  .rt{color:var(--text-2);font-size:14px}
-  .steps{position:relative;padding-left:0;margin-top:4px}
-  .step{display:flex;gap:18px;align-items:flex-start;padding:10px 0;position:relative}
-  .step:not(:last-child)::before{content:"";position:absolute;left:25px;top:58px;bottom:-8px;width:2px;background:var(--accent-mid)}
-  .sn{width:52px;height:52px;border-radius:50%;border:2.5px solid var(--accent);background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;z-index:1}
-  .st{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;margin-top:2px}
-  .sd{color:var(--text-2);font-size:14px;margin-top:2px}
-  .note{margin-top:20px;border-radius:var(--radius-sm);padding:16px 22px;font-size:14px}
-  .note.g{background:var(--green-light);border:1px solid #bbf7d0;color:#15803d} .note.g b{color:#14532d}
-  .note.a{background:var(--amber-light);border:1px solid #fde68a;color:var(--amber)} .note.a b{color:#78350f}
-  .note.b{background:var(--accent-light);border:1px solid var(--accent-mid);color:var(--accent-dark)}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .mini{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px}
-  .mini .ct{font-size:16px}
-  .price{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px}
-  .price:last-child{border-bottom:0}
-  .price b{font-weight:600} .price span{color:var(--text-2);text-align:right}
-  .tl{display:flex;flex-direction:column;gap:12px}
-  .tlr{display:flex;gap:14px;align-items:stretch}
-  .when{width:130px;flex-shrink:0;background:var(--accent);color:#fff;border-radius:var(--radius-sm);padding:12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;text-align:center}
-  .tlr .card{flex:1}
-  .brief{display:flex;align-items:center;justify-content:center;gap:14px;padding:46px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));margin:0 32px;border-radius:var(--radius);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700}
-
-  /* ===== тексты ===== */
-  .msg{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:14px}
-  .msg h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:4px}
-  .msg .meta{color:var(--text-3);font-size:12px;margin-bottom:10px}
-  .msg pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;color:var(--text)}
-  footer{max-width:860px;margin:40px auto;padding:0 16px;color:var(--text-3);font-size:12px}
-</style>
-</head>
-<body>
-
-<div class="top">
-  <h1>Карточки и тексты: воронка через SEO</h1>
-  <p>Новая версия цепочки сообщений для проектов, где мы продвигаем сайт в поиске. Каждая карточка — отдельный блок шириной 794&nbsp;px: скриньте его целиком или жмите «Скачать PNG».</p>
-</div>
-<nav id="nav"></nav>
-
-<!-- ============ КАРТОЧКИ ============ -->
-
-<div class="block" id="c-brief">
-  <div class="label"><span>0 · /бриф — баннер</span><button class="btn ghost" data-png="shot-brief">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-brief"><div class="brief">📋 Заполните бриф</div></div></div>
-</div>
-
-<div class="block" id="c-terms">
-  <div class="label"><span>1 · /термины</span><button class="btn ghost" data-png="shot-terms">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-terms">
-    <div class="hero"><div class="eyebrow">Словарь</div><h2>Термины, которые встретятся в переписке</h2><p>Коротко объясняем, чтобы всё было понятно с первого сообщения.</p></div>
-    <div class="content"><div class="cards">
-      <div class="card"><div class="card-head"><div class="ico">🔎</div><div class="ct">SEO — продвижение сайта в поиске</div></div>
-        <p>Работа над тем, чтобы ваш сайт показывался в Яндексе и Google, когда человек ищет вашу услугу или ответ на вопрос. Состоит из техничной настройки сайта, страниц под услуги и регулярных статей. Результат накапливается постепенно, зато не пропадает, когда заканчивается рекламный бюджет.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🎁</div><div class="ct">Лид-магнит</div></div>
-        <p>Бесплатный полезный материал (например, PDF-гайд), который человек получает в обмен на контакт. Помогает познакомиться с вами и увидеть вашу экспертность до покупки.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🤖</div><div class="ct">Чат-бот в Telegram</div></div>
-        <p>Автоматический собеседник: выдаёт гайд, отвечает по сценарию, ведёт человека по шагам. Может быть с геймификацией — уровни, баллы, мини-задания, чтобы человеку было интереснее дойти до конца.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🔥</div><div class="ct">Прогрев</div></div>
-        <p>Серия коротких полезных сообщений в боте после выдачи гайда: разбор частых ошибок, пример, ответы на возражения. Цель — чтобы человек сам захотел обратиться к вам, а не получил «в лоб» предложение купить.</p></div>
-    </div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-path">
-  <div class="label"><span>2 · /путь_клиента</span><button class="btn ghost" data-png="shot-path">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-path">
-    <div class="hero"><div class="eyebrow">Как это работает</div><h2>Путь клиента</h2><p>От поискового запроса до обращения к вам — 6 шагов. Сайт — первая точка контакта, бот — прогрев.</p></div>
-    <div class="content"><div class="steps">
-      <div class="step"><div class="sn">🔎</div><div><div class="st">1. Ищет в Яндексе или Google</div><div class="sd">Человек вводит вопрос или услугу: «как выбрать…», «… цена в моём городе».</div></div></div>
-      <div class="step"><div class="sn">🌐</div><div><div class="st">2. Попадает на ваш сайт</div><div class="sd">Открывает статью или страницу услуги, которую мы подняли под этот запрос.</div></div></div>
-      <div class="step"><div class="sn">🎁</div><div><div class="st">3. Забирает гайд — кнопка ведёт в бота</div><div class="sd">На сайте и в каждой статье есть блок «Скачать гайд бесплатно» со ссылкой в Telegram-бота.</div></div></div>
-      <div class="step"><div class="sn">🤖</div><div><div class="st">4. Бот выдаёт гайд и прогревает</div><div class="sd">Несколько дней — короткие полезные сообщения, примеры, ответы на частые сомнения.</div></div></div>
-      <div class="step"><div class="sn">💬</div><div><div class="st">5. Пишет вам</div><div class="sd">Когда человек готов, бот передаёт вам контакт или он сам нажимает «Написать».</div></div></div>
-      <div class="step"><div class="sn">💳</div><div><div class="st">6. Оплачивает основной продукт</div><div class="sd">К этому моменту уже знает вас и понимает, чем вы полезны.</div></div></div>
-    </div>
-    <div class="note a"><b>Важно:</b> это путь через поисковое продвижение. Заявки приходят не мгновенно, а нарастают по мере того, как сайт набирает позиции.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-bot">
-  <div class="label"><span>3 · /прогрев_бота — что происходит в боте</span><button class="btn ghost" data-png="shot-bot">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-bot">
-    <div class="hero"><div class="eyebrow">Чат-бот</div><h2>Как работает прогрев</h2><p>Бот не «давит» продажей: сначала польза, потом предложение. Тексты согласуем с вами.</p></div>
-    <div class="content"><div class="steps">
-      <div class="step"><div class="sn">🎁</div><div><div class="st">Сразу: гайд</div><div class="sd">Человек нажал кнопку на сайте → бот здоровается и выдаёт PDF.</div></div></div>
-      <div class="step"><div class="sn">📖</div><div><div class="st">Через сутки: разбор из гайда</div><div class="sd">Одна главная мысль гайда и вопрос «что из этого вам знакомо?».</div></div></div>
-      <div class="step"><div class="sn">🧩</div><div><div class="st">Через 2–3 дня: пример или частая ошибка</div><div class="sd">Короткий случай из практики, показывающий вашу экспертность.</div></div></div>
-      <div class="step"><div class="sn">🙋</div><div><div class="st">Через 4–5 дней: ответ на сомнения</div><div class="sd">Закрываем главное возражение из вашего брифа.</div></div></div>
-      <div class="step"><div class="sn">💬</div><div><div class="st">Финал: приглашение к вам</div><div class="sd">Кнопка «Написать» и вопрос, нужна ли консультация. Контакт приходит вам.</div></div></div>
-    </div>
-    <div class="note b"><b>Интервалы ориентировочные</b> — подстроим под вашу нишу и по статистике будем править тексты, если люди отваливаются на каком-то шаге.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-time">
-  <div class="label"><span>4 · /сроки — что ожидать</span><button class="btn ghost" data-png="shot-time">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-time">
-    <div class="hero"><div class="eyebrow">Честно о сроках</div><h2>Что ожидать и когда</h2><p>SEO не даёт заявок в первую неделю. Ниже — типовые ориентиры, а не обещания.</p></div>
-    <div class="content"><div class="tl">
-      <div class="tlr"><div class="when">Недели 1–2</div><div class="card"><div class="ct">Сайт попадает в индекс</div><p>Подключаем Яндекс Вебмастер и Google Search Console, отправляем карту сайта, настраиваем цель «переход в бота». Заявок пока нет — это нормально.</p></div></div>
-      <div class="tlr"><div class="when">Недели 3–6</div><div class="card"><div class="ct">Первые визиты из поиска</div><p>Выходят первые статьи, поисковик начинает показывать сайт по редким запросам. Появляются первые переходы в бота.</p></div></div>
-      <div class="tlr"><div class="when">Месяцы 2–4</div><div class="card"><div class="ct">Рост позиций</div><p>При регулярных публикациях сайт выходит в топ-10 по средним запросам. Поток переходов в бота и заявок растёт.</p></div></div>
-      <div class="tlr"><div class="when">После 4 мес.</div><div class="card"><div class="ct">Накопительный эффект</div><p>Статьи продолжают приводить людей без рекламных расходов. Смотрим статистику и усиливаем то, что работает.</p></div></div>
-    </div>
-    <div class="note a"><b>Гарантий позиций и количества заявок нет:</b> всё зависит от конкуренции в вашей нише и регионе. Если нужны заявки быстрее — параллельно можно подключить платную рекламу (отдельный бюджет).</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-pack">
-  <div class="label"><span>5 · /упаковка_готова</span><button class="btn ghost" data-png="shot-pack">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-pack">
-    <div class="hero"><div class="eyebrow">Отчёт о выполненной работе</div><h2>Этап «Упаковка»</h2><p>Упаковка проекта завершена. Ниже — из чего она состоит и что уже готово к работе.</p></div>
-    <div class="content"><div class="cards">
-      <div class="card"><div class="card-head"><div class="ico">🎁</div><div class="ct">Лид-магнит</div></div>
-        <p>✓ Подготовлен гайд под вашу нишу и аудиторию<br>✓ Согласован и готов к выдаче в боте</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🤖</div><div class="ct">Чат-бот с прогревом</div></div>
-        <p>✓ Бот выдаёт гайд и ведёт человека серией сообщений<br>✓ Настроена передача контакта вам<br>✓ Протестирован и готов принимать обращения</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🌐</div><div class="ct">Сайт — основа поискового продвижения</div></div>
-        <p>✓ Структура под поисковые запросы: страницы услуг и блог<br>✓ Технические настройки: карта сайта, robots, разметка<br>✓ Кнопки на сайте ведут в бота за гайдом<br>✓ Сайт опубликован</p></div>
-    </div>
-    <div class="note g"><b>Что дальше:</b> после подтверждения отчёта подключаем кабинет и запускаем индексацию и продвижение сайта в поиске.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-reg">
-  <div class="label"><span>6 · /платформа_регистрация</span><button class="btn ghost" data-png="shot-reg">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-reg">
-    <div class="hero"><div class="eyebrow">Мини-регламент</div><h2>Регистрация в личном кабинете</h2><p>6 шагов от приглашения до разблокировки кабинета. В кабинете — «Распаковка», рекомендации и отчёты по задачам.</p></div>
-    <div class="content"><div class="steps">
-      <div class="step"><div class="sn">1</div><div><div class="st">Перейдите по ссылке-приглашению</div><div class="sd">Откройте ссылку регистрации в браузере: <b>{ССЫЛКА}</b></div></div></div>
-      <div class="step"><div class="sn">2</div><div><div class="st">Заполните форму</div><div class="sd">Понадобятся инвайт-код <b>{ИНВАЙТ}</b>, e-mail, Telegram и пароль (не менее 6 символов).</div></div></div>
-      <div class="step"><div class="sn">3</div><div><div class="st">Нажмите «Зарегистрироваться»</div><div class="sd">Telegram указывайте точно — по нему вас найдут в рабочем чате.</div></div></div>
-      <div class="step"><div class="sn">4</div><div><div class="st">Подтвердите e-mail</div><div class="sd">Перейдите по ссылке из письма.</div></div></div>
-      <div class="step"><div class="sn">5</div><div><div class="st">Пришлите менеджеру логин и пароль</div><div class="sd">Чтобы мы подключили ваш проект и вели задачи в кабинете.</div></div></div>
-      <div class="step"><div class="sn">6</div><div><div class="st">Прикрепите подписанный акт</div><div class="sd">В личном кабинете, в указанном окне — без акта кабинет остаётся заблокирован.</div></div></div>
-    </div>
-    <div class="note g"><b>Готово:</b> после этого мы начинаем работу над продвижением сайта. Пополнять баланс для SEO не нужно.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-q">
-  <div class="label"><span>7 · /seo_вопросы — вместо «критериев клиента»</span><button class="btn ghost" data-png="shot-q">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-q">
-    <div class="hero"><div class="eyebrow">Настройка продвижения</div><h2>Что нужно уточнить</h2><p>Ответы определяют, под какие запросы и в каких городах мы будем поднимать сайт.</p></div>
-    <div class="content"><div class="cards">
-      <div class="card"><div class="card-head"><div class="ico">📍</div><div class="ct">Где вы работаете</div></div><p>Город или регион. Или работаете онлайн по всей стране.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">⭐</div><div class="ct">Приоритетные услуги</div></div><p>3–5 услуг, которые хочется продавать больше всего.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🗣️</div><div class="ct">Как клиенты называют услугу</div></div><p>Своими словами — что они вбивают в поиск. Часто это не то, как называете вы.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🔍</div><div class="ct">Конкуренты (по желанию)</div></div><p>2–3 сайта, на кого вы ориентируетесь.</p></div>
-      <div class="card"><div class="card-head"><div class="ico">🔗</div><div class="ct">Домен сайта</div></div><p>Свой домен или бесплатный. На бесплатном адресе сайт ранжируется заметно слабее — подскажем, как подключить свой.</p></div>
-    </div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-road">
-  <div class="label"><span>8 · /дорожная_карта</span><button class="btn ghost" data-png="shot-road">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-road">
-    <div class="hero"><div class="eyebrow">Обзор сотрудничества</div><h2>Ваш путь с нами — 8 этапов</h2><p>Показываем всю дорогу сразу, чтобы вы понимали, что и когда будет происходить.</p></div>
-    <div class="content"><div class="steps">
-      <div class="step"><div class="sn">📦</div><div><div class="st">1. Упаковка</div><div class="sd">Бриф, лид-магнит, чат-бот с прогревом и сайт с блогом.</div></div></div>
-      <div class="step"><div class="sn">✅</div><div><div class="st">2. Отчёт по упаковке</div><div class="sd">Вы проверяете и подтверждаете — двигаемся дальше.</div></div></div>
-      <div class="step"><div class="sn">🏦</div><div><div class="st">3. Личный кабинет</div><div class="sd">Регистрация: там «Распаковка», рекомендации и отчёты по задачам.</div></div></div>
-      <div class="step"><div class="sn">🔎</div><div><div class="st">4. Запуск SEO</div><div class="sd">Индексация в Яндексе и Google, карточки на картах, первые статьи.</div></div></div>
-      <div class="step"><div class="sn">🗂️</div><div><div class="st">5. Постановка задач</div><div class="sd">Что делаем мы на постоянной основе, а что — по желанию за отдельный бюджет.</div></div></div>
-      <div class="step"><div class="sn">📈</div><div><div class="st">6. Работа и отчёты</div><div class="sd">Статьи, публикации, правки бота; результаты видны в кабинете.</div></div></div>
-      <div class="step"><div class="sn">📊</div><div><div class="st">7. Итоги месяца</div><div class="sd">Что сделано, сколько визитов и переходов в бота, что улучшить.</div></div></div>
-      <div class="step"><div class="sn">🏁</div><div><div class="st">8. Итоги за 3 месяца</div><div class="sd">Большая картина и разговор о продолжении.</div></div></div>
-    </div>
-    <div class="note b"><b>Сейчас вы здесь:</b> этап 1 — упаковка. Как только всё будет готово, пришлём отчёт на подтверждение.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-tasks">
-  <div class="label"><span>9 · /задачи_команды</span><button class="btn ghost" data-png="shot-tasks">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-tasks">
-    <div class="hero"><div class="eyebrow">Без дополнительного бюджета</div><h2>Что делает наша команда</h2><p>Эти задачи идут на весь срок сотрудничества. От вас — только согласование материалов.</p></div>
-    <div class="content"><div class="cards">
-      <div class="card"><div class="card-head"><div class="ico">🔧</div><div class="ct">Технический запуск SEO</div></div>
-        <div class="row"><div class="tag us">Мы</div><div class="rt">Подключаем Яндекс Вебмастер, Google Search Console и Метрику, отправляем карту сайта, настраиваем цель «переход в бота».</div></div>
-        <div class="row"><div class="tag you">Вы</div><div class="rt">При необходимости подтверждаете доступы.</div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">📝</div><div class="ct">Блог на сайте</div></div>
-        <div class="row"><div class="tag us">Мы</div><div class="rt">Пишем статьи под поисковые запросы вашей ниши: стартовый пакет, далее <b>регулярно — не реже 1 статьи в неделю</b>. В каждой — ссылка на гайд в боте.</div></div>
-        <div class="row"><div class="tag you">Вы</div><div class="rt">Согласуете темы и содержание.</div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">📍</div><div class="ct">Карточки на картах</div></div>
-        <div class="row"><div class="tag us">Мы</div><div class="rt">Яндекс Бизнес, 2ГИС, Google — для услуг с городом или выездом. Название, адрес и телефон совпадают с сайтом.</div></div>
-        <div class="row"><div class="tag you">Вы</div><div class="rt">Подтверждаете владение (звонок или код).</div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🧭</div><div class="ct">Распаковка</div></div>
-        <div class="row"><div class="tag us">Мы</div><div class="rt">Отдельно формируем «Распаковку»: кто ваш клиент, чем вы отличаетесь, как продаёте. Готовим черновики.</div></div>
-        <div class="row"><div class="tag you">Вы</div><div class="rt">Правите под себя и согласуете. Материалы можно выставлять у себя в соцсетях и получать дополнительных клиентов.</div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">💡</div><div class="ct">Рекомендации</div></div>
-        <div class="row"><div class="tag us">Мы</div><div class="rt">Отдельно формируем рекомендации: что публиковать и куда. Материалы для первых постов уже готовим — даже если соцсетей пока нет, можно создать их и начать с нашего контента.</div></div>
-        <div class="row"><div class="tag you">Вы</div><div class="rt">Публикуете материалы у себя и прикладываете отчёты в кабинете.</div></div></div>
-    </div>
-    <div class="note g"><b>Отчётность:</b> результаты по задачам, визиты на сайт и переходы в бота видны в личном кабинете.</div></div>
-  </div></div>
-</div>
-
-<div class="block" id="c-boost">
-  <div class="label"><span>10 · /ускорители (бывш. /подрядчики)</span><button class="btn ghost" data-png="shot-boost">Скачать PNG</button></div>
-  <div class="scroll"><div class="shot" id="shot-boost">
-    <div class="hero"><div class="eyebrow">За дополнительный бюджет · по желанию</div><h2>Как получать заявки быстрее</h2><p>SEO набирает вес месяцами. Платные каналы дают заявки раньше, пока сайт растёт, — подключаем только по вашему решению.</p></div>
-    <div class="content"><div class="card">
-      <div class="price"><b>🎯 Яндекс.Директ</b><span>@Cobol111 · 15 000 ₽ + бюджет</span></div>
-      <div class="price"><b>🛒 Продвижение на Авито</b><span>@ccrreeaattoorr · 15 000 ₽ + бюджет</span></div>
-      <div class="price"><b>📣 ВК-реклама</b><span>@Ilia_Digital · 15 000 ₽ + бюджет</span></div>
-      <div class="price"><b>📢 ТГ-посевы</b><span>@Ilia_Digital · 25% от бюджета</span></div>
-      <div class="price"><b>🤖 ИИ-обзвон</b><span>от 3 500 ₽</span></div>
-      <div class="price"><b>☎️ Колл-центр по вашим базам</b><span>@EvgeniyValts · 30 ₽/контакт · 2 прозвона</span></div>
-      <div class="price"><b>💬 ГЦК</b><span>12 ₽/номер</span></div>
-      <div class="price"><b>✅ Готовые лиды</b><span>@lomelingoni · от 500 ₽/лид</span></div>
-    </div>
-    <div class="note b"><b>Как подключить:</b> напишите менеджеру, какой инструмент интересен — согласуем бюджет и запустим. Платная реклама ведёт на тот же сайт и бота, так что всё работает вместе.</div></div>
-  </div></div>
-</div>
-
-<!-- ============ ТЕКСТЫ ============ -->
-<div class="block" id="texts">
-  <div class="label"><span>Тексты сообщений (скопировать)</span></div>
-  <div id="msgs"></div>
-</div>
-
-<footer>Служебная страница, закрыта от индексации. Телефонные ники подрядчиков перенесены из прежней карточки без изменений.</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
-const MSGS = [
- ["/первое_сообщение","Без изменений.",
-`Это рабочий чат — здесь будем вести ваш проект от сегодняшнего дня до поставленных задач.
+:root{--accent:#2563EB;--accent-dark:#1d4ed8;--accent-mid:#dbeafe;--bg:#eef2f9;--bg-2:#f8faff;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);font-size:14px;line-height:1.5}
+.top{max-width:1100px;margin:0 auto;padding:24px 16px 8px}
+.top h1{font-family:'Space Grotesk',sans-serif;font-size:26px}
+.top p{color:var(--text-2);margin-top:6px}
+.hint{display:inline-block;margin-top:10px;background:#fef3c7;color:#92400e;border-radius:8px;padding:8px 12px;font-size:13px}
+.list{max-width:1100px;margin:16px auto 40px;padding:0 16px;display:flex;flex-direction:column;gap:18px}
+.item{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;display:grid;grid-template-columns:34px minmax(0,420px) minmax(0,1fr);gap:18px;align-items:start}
+.num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px 'Space Grotesk',sans-serif;display:flex;align-items:center;justify-content:center}
+.pic img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:10px;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.pic.none{color:var(--text-3);font-size:13px;border:1px dashed var(--border);border-radius:10px;padding:24px 12px;text-align:center}
+.dl{display:inline-block;margin-top:8px;font-size:13px;color:var(--accent-dark);text-decoration:none;font-weight:500}
+.txt h3{font:600 17px 'Space Grotesk',sans-serif}
+.meta{color:var(--text-3);font-size:12px;margin:2px 0 10px}
+pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.btn{font:600 13px 'Inter',sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+@media(max-width:820px){.item{grid-template-columns:34px 1fr}.pic,.txt{grid-column:1 / -1}.num{grid-row:1}}
+</style></head><body>
+<div class="top"><h1>Сообщения SEO-воронки — по порядку</h1>
+<p>Слева картинка, справа текст сообщения. Шаги идут в том порядке, в каком их отправляют клиенту.</p>
+<span class="hint">📱 С телефона: зажмите картинку пальцем → «Сохранить в Фото». С компьютера: правая кнопка → «Сохранить картинку как…» или ссылка «Скачать файл».</span></div>
+<div class="list">
+<section class="item" id="m1">
+  <div class="num">1</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>/первое_сообщение</h3><div class="meta">Без изменений.</div><pre>Это рабочий чат — здесь будем вести ваш проект от сегодняшнего дня до поставленных задач.
 
 Вести ваш проект будет проектный менеджер {ИМЯ_ПМ} — {НИК_ПМ}.
 У {ИМЯ_ПМ} большой опыт — поможет с вопросами и внесёт правки по необходимости.
 
-Рады, что вы с нами 🙏`],
- ["/термины","Картинка «1 · термины» + подпись",
-`Пара терминов, которые будут встречаться в переписке — коротко объясняем:`],
- ["/путь_клиента","Картинка «2 · путь клиента» + подпись",
-`Вот как человек проходит путь от поиска в Яндексе до обращения к вам.
+Рады, что вы с нами 🙏</pre><button class="btn" data-i="0">Скопировать текст</button></div>
+</section>
+<section class="item" id="m2">
+  <div class="num">2</div>
+  <div class="pic"><img src="img/brief.png" alt="/бриф" loading="lazy" width="794"><a class="dl" href="img/brief.png" download="brief.png">Скачать файл</a></div>
+  <div class="txt"><h3>/бриф</h3><div class="meta">Баннер + текст брифа</div><pre>Ответьте на вопросы ниже — это нужно для точных целевых заявок. Нет ответа или не уверены — просто пропускайте. Можно голосовым.
 
-Важно: это путь через поисковое продвижение. Заявки приходят не мгновенно, а нарастают по мере того, как сайт набирает позиции.`],
- ["/сайт_отправка","Меняется абзац про заявки; правила правок оставляем как были",
-`Здравствуйте! @{НИК_КЛИЕНТА}
+🏢 О БИЗНЕСЕ
+1. Сфера/ниша (напр.: психолог, брокер по новостройкам)
+2. Конкретное предложение — что продаёте (напр.: «Продвижение Instagram»)
+3. Город(а) работы
+4. Тип клиента: B2B / B2C / B2G
+
+📊 ПОКАЗАТЕЛИ
+5. Сколько клиентов сейчас в месяц (напр.: 5)
+6. Желаемая выручка в месяц (напр.: 700 000 ₽)
+7. Клиентский цикл (разовая покупка / подписка / долгий проект)
+
+💰 УСЛУГИ И ЦЕНЫ
+8. Список услуг с ценами, нумеруйте 8.1, 8.2...
+Напр.: 8.1 Курс — от 999 ₽, 8.2 Сессия 1.5ч — 7 500 ₽
+
+👤 АУДИТОРИЯ
+9. Портрет идеального клиента (напр.: «Женщины 25-35, Москва»)
+10. Главная боль аудитории (напр.: «Нет заявок с сайта»)
+11. Ключевое возражение (напр.: «Дорого»)
+12. Измеримый результат (напр.: «+40% заявок»)
+13. УТП (напр.: «Первый месяц бесплатно»)
+
+🔗 Ссылки: ВК, ТГ, Instagram, бот, сайт, YouTube/Рутуб</pre><button class="btn" data-i="1">Скопировать текст</button></div>
+</section>
+<section class="item" id="m3">
+  <div class="num">3</div>
+  <div class="pic"><img src="img/terms.png" alt="/термины" loading="lazy" width="794"><a class="dl" href="img/terms.png" download="terms.png">Скачать файл</a></div>
+  <div class="txt"><h3>/термины</h3><div class="meta">Картинка «1 · термины» + подпись</div><pre>Пара терминов, которые будут встречаться в переписке — коротко объясняем:</pre><button class="btn" data-i="2">Скопировать текст</button></div>
+</section>
+<section class="item" id="m4">
+  <div class="num">4</div>
+  <div class="pic"><img src="img/path.png" alt="/путь_клиента" loading="lazy" width="794"><a class="dl" href="img/path.png" download="path.png">Скачать файл</a></div>
+  <div class="txt"><h3>/путь_клиента</h3><div class="meta">Картинка «2 · путь клиента» + подпись</div><pre>Вот как человек проходит путь от поиска в Яндексе до обращения к вам.
+
+Важно: это путь через поисковое продвижение. Заявки приходят не мгновенно, а нарастают по мере того, как сайт набирает позиции.</pre><button class="btn" data-i="3">Скопировать текст</button></div>
+</section>
+<section class="item" id="m5">
+  <div class="num">5</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>/сайт_отправка</h3><div class="meta">Меняется абзац про заявки; правила правок оставляем как были</div><pre>Здравствуйте! @{НИК_КЛИЕНТА}
 
 Сайт:
 
@@ -303,14 +100,20 @@ const MSGS = [
 1. {ЗАГЛУШКА_1}
 2. {ЗАГЛУШКА_2}
 
-Когда напишете все правки, обязательно добавьте фразу, что это всё — так мы поймём, что можно брать правки в работу.`],
- ["/упаковка_готова","Картинка «5 · упаковка» + текст",
-`Готов этап «Упаковка» — все материалы созданы: гайд, бот с прогревом и сайт, настроенный под поисковое продвижение.
+Когда напишете все правки, обязательно добавьте фразу, что это всё — так мы поймём, что можно брать правки в работу.</pre><button class="btn" data-i="4">Скопировать текст</button></div>
+</section>
+<section class="item" id="m6">
+  <div class="num">6</div>
+  <div class="pic"><img src="img/pack.png" alt="/упаковка_готова" loading="lazy" width="794"><a class="dl" href="img/pack.png" download="pack.png">Скачать файл</a></div>
+  <div class="txt"><h3>/упаковка_готова</h3><div class="meta">Картинка «5 · упаковка» + текст</div><pre>Готов этап «Упаковка» — все материалы созданы: гайд, бот с прогревом и сайт, настроенный под поисковое продвижение.
 
 Пожалуйста, посмотрите отчёт и напишите:
-«Принимаю» — если всё устраивает, переходим к следующему этапу`],
- ["/платформа_регистрация","Картинка «6 · регистрация». Убрали «пост-клик», пол/возраст/город, подачу трафика",
-`Что нужно сделать дальше:
+«Принимаю» — если всё устраивает, переходим к следующему этапу</pre><button class="btn" data-i="5">Скопировать текст</button></div>
+</section>
+<section class="item" id="m7">
+  <div class="num">7</div>
+  <div class="pic"><img src="img/reg.png" alt="/платформа_регистрация" loading="lazy" width="794"><a class="dl" href="img/reg.png" download="reg.png">Скачать файл</a></div>
+  <div class="txt"><h3>/платформа_регистрация</h3><div class="meta">Картинка «6 · регистрация». Убрали «пост-клик», пол/возраст/город, подачу трафика</div><pre>Что нужно сделать дальше:
 
 1. Зарегистрируйтесь в личном кабинете по ссылке:
 {ССЫЛКА_НА_ПЛАТФОРМУ}
@@ -321,9 +124,12 @@ const MSGS = [
 
 3. Прикрепите в личном кабинете подписанный акт — без него кабинет остаётся заблокирован.
 
-4. В кабинете вы увидите раздел «Распаковка», рекомендации и отчёты по задачам. Само продвижение сайта ведёт наша команда; от вас — согласования и ответы на вопросы.`],
- ["/seo_как_это_работает (вместо /трафик_воронка)","Заменяет старое видео про пост-клик. Видео нужно перезаписать (см. сценарий ниже)",
-`Как это работает:
+4. В кабинете вы увидите раздел «Распаковка», рекомендации и отчёты по задачам. Само продвижение сайта ведёт наша команда; от вас — согласования и ответы на вопросы.</pre><button class="btn" data-i="6">Скопировать текст</button></div>
+</section>
+<section class="item" id="m8">
+  <div class="num">8</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>/seo_как_это_работает (вместо /трафик_воронка)</h3><div class="meta">Заменяет старое видео про пост-клик. Видео нужно перезаписать (см. сценарий ниже)</div><pre>Как это работает:
 
 Мы продвигаем ваш сайт в поиске — в Яндексе и Google — по запросам, которые вводят люди, когда ищут вашу услугу или ответ на свой вопрос. Человек приходит на сайт, видит предложение бесплатного гайда и по кнопке переходит в Telegram-бота. Бот выдаёт гайд и несколько дней прогревает полезными сообщениями. После этого человек сам пишет вам.
 
@@ -334,13 +140,22 @@ const MSGS = [
 2. Когда человек пишет вам после бота — общаетесь с ним и ведёте к оплате
 3. Если нужно быстрее — можно подключить платную рекламу отдельно (список пришлём)
 
-Ваш персональный менеджер — {ИМЯ_ПМ} ({НИК_ПМ}). Поможет с настройками и ответит на вопросы.`],
- ["/сроки","Картинка «4 · сроки» + подпись",
-`Что ожидать и когда — на картинке. Это типовые ориентиры, не обещание: сроки зависят от конкуренции в вашей нише.`],
- ["/прогрев_бота","Картинка «3 · прогрев» + подпись",
-`Так будет работать бот после того, как человек нажал кнопку на сайте. Тексты сообщений согласуем с вами — если что-то захотите изменить, скажите.`],
- ["/seo_вопросы (вместо /трафик_критерии)","Картинка «7 · что нужно уточнить» + текст",
-`Чтобы точно настроить продвижение, уточните, пожалуйста:
+Ваш персональный менеджер — {ИМЯ_ПМ} ({НИК_ПМ}). Поможет с настройками и ответит на вопросы.</pre><button class="btn" data-i="7">Скопировать текст</button></div>
+</section>
+<section class="item" id="m9">
+  <div class="num">9</div>
+  <div class="pic"><img src="img/time.png" alt="/сроки" loading="lazy" width="794"><a class="dl" href="img/time.png" download="time.png">Скачать файл</a></div>
+  <div class="txt"><h3>/сроки</h3><div class="meta">Картинка «4 · сроки» + подпись</div><pre>Что ожидать и когда — на картинке. Это типовые ориентиры, не обещание: сроки зависят от конкуренции в вашей нише.</pre><button class="btn" data-i="8">Скопировать текст</button></div>
+</section>
+<section class="item" id="m10">
+  <div class="num">10</div>
+  <div class="pic"><img src="img/bot.png" alt="/прогрев_бота" loading="lazy" width="794"><a class="dl" href="img/bot.png" download="bot.png">Скачать файл</a></div>
+  <div class="txt"><h3>/прогрев_бота</h3><div class="meta">Картинка «3 · прогрев» + подпись</div><pre>Так будет работать бот после того, как человек нажал кнопку на сайте. Тексты сообщений согласуем с вами — если что-то захотите изменить, скажите.</pre><button class="btn" data-i="9">Скопировать текст</button></div>
+</section>
+<section class="item" id="m11">
+  <div class="num">11</div>
+  <div class="pic"><img src="img/q.png" alt="/seo_вопросы (вместо /трафик_критерии)" loading="lazy" width="794"><a class="dl" href="img/q.png" download="q.png">Скачать файл</a></div>
+  <div class="txt"><h3>/seo_вопросы (вместо /трафик_критерии)</h3><div class="meta">Картинка «7 · что нужно уточнить» + текст</div><pre>Чтобы точно настроить продвижение, уточните, пожалуйста:
 
 1. В каких городах или регионах вы работаете (или онлайн по всей стране)?
 2. Какие 3–5 услуг для вас приоритетные?
@@ -348,9 +163,12 @@ const MSGS = [
 4. 2–3 сайта конкурентов, на которые вы ориентируетесь (по желанию)
 5. Есть ли у сайта свой домен?
 
-Можно голосовым.`],
- ["/менеджер_знакомство (вместо /трафик_менеджер)","Убрали просьбу пополнить бюджет",
-`Здравствуйте 👋
+Можно голосовым.</pre><button class="btn" data-i="10">Скопировать текст</button></div>
+</section>
+<section class="item" id="m12">
+  <div class="num">12</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>/менеджер_знакомство (вместо /трафик_менеджер)</h3><div class="meta">Убрали просьбу пополнить бюджет</div><pre>Здравствуйте 👋
 
 Я ваш персональный менеджер — {ИМЯ_ПМ} ({НИК_ПМ}). Начинаем продвигать ваш сайт в поиске.
 
@@ -358,9 +176,17 @@ const MSGS = [
 
 Первые недели уходят на настройку и индексацию сайта — заявок в это время ждать рано, это нормальный этап. Ориентиры по срокам — на картинке выше.
 
-Отличного дня! 🙂`],
- ["/видео_кабинет","Текст чуть поправлен. Само видео про кабинет проверьте: если там звучит «подача трафика» — перезаписать",
-`Прикрепляем короткое видео, как работать в личном кабинете:
+Отличного дня! 🙂</pre><button class="btn" data-i="11">Скопировать текст</button></div>
+</section>
+<section class="item" id="m13">
+  <div class="num">13</div>
+  <div class="pic"><img src="img/road.png" alt="/дорожная_карта" loading="lazy" width="794"><a class="dl" href="img/road.png" download="road.png">Скачать файл</a></div>
+  <div class="txt"><h3>/дорожная_карта</h3><div class="meta">Картинка «8 · дорожная карта» + подпись</div><pre>Показываем всю дорогу сразу — какие этапы нас ждут от упаковки до итогов за 3 месяца.</pre><button class="btn" data-i="12">Скопировать текст</button></div>
+</section>
+<section class="item" id="m14">
+  <div class="num">14</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>/видео_кабинет</h3><div class="meta">Текст чуть поправлен. Само видео про кабинет проверьте: если там звучит «подача трафика» — перезаписать</div><pre>Прикрепляем короткое видео, как работать в личном кабинете:
 {ССЫЛКА_НА_ПЛАТФОРМУ}
 
 Что в видео:
@@ -376,59 +202,43 @@ const MSGS = [
 1. Начните проходить задачи в блоке рекомендаций по порядку
 2. Прикладывайте отчёты к выполненным задачам — так быстрее проверим
 
-Вопросы — пишите сюда 🙂`],
- ["/задачи_команды","Картинка «9 · задачи» + текст",
-`Ставим постоянные задачи по продвижению вашего сайта — их наша команда делает без дополнительного бюджета с вашей стороны на весь срок сотрудничества.
+Вопросы — пишите сюда 🙂</pre><button class="btn" data-i="13">Скопировать текст</button></div>
+</section>
+<section class="item" id="m15">
+  <div class="num">15</div>
+  <div class="pic"><img src="img/tasks.png" alt="/задачи_команды" loading="lazy" width="794"><a class="dl" href="img/tasks.png" download="tasks.png">Скачать файл</a></div>
+  <div class="txt"><h3>/задачи_команды</h3><div class="meta">Картинка «9 · задачи» + текст</div><pre>Ставим постоянные задачи по продвижению вашего сайта — их наша команда делает без дополнительного бюджета с вашей стороны на весь срок сотрудничества.
 
 От вас нужно только согласовывать содержание — публикуем и ведём мы.
 
-Список задач — на картинке. Если всё устраивает, просто подтвердите — и запускаем.`],
- ["/ускорители (вместо /подрядчики)","Картинка «10 · ускорители» + текст",
-`Если захотите получать заявки быстрее, чем набирает вес SEO, можно параллельно подключить платные каналы — это отдельный бюджет, подключаем только по вашему желанию.
+Список задач — на картинке. Если всё устраивает, просто подтвердите — и запускаем.</pre><button class="btn" data-i="14">Скопировать текст</button></div>
+</section>
+<section class="item" id="m16">
+  <div class="num">16</div>
+  <div class="pic"><img src="img/boost.png" alt="/ускорители (вместо /подрядчики)" loading="lazy" width="794"><a class="dl" href="img/boost.png" download="boost.png">Скачать файл</a></div>
+  <div class="txt"><h3>/ускорители (вместо /подрядчики)</h3><div class="meta">Картинка «10 · ускорители» + текст</div><pre>Если захотите получать заявки быстрее, чем набирает вес SEO, можно параллельно подключить платные каналы — это отдельный бюджет, подключаем только по вашему желанию.
 
 Список и цены — на картинке.
 
-Платная реклама ведёт на тот же сайт и в того же бота, так что всё работает вместе. Пишите — согласуем и запустим.`],
- ["Сценарий видео /seo_как_это_работает (1–1,5 мин)","Вместо старого ролика про пост-клик. Запись экрана: сайт → кнопка → бот",
-`1. Экран: поисковая выдача по запросу вашей ниши. «Люди ищут услугу в Яндексе. Наша задача — чтобы они находили ваш сайт.»
+Платная реклама ведёт на тот же сайт и в того же бота, так что всё работает вместе. Пишите — согласуем и запустим.</pre><button class="btn" data-i="15">Скопировать текст</button></div>
+</section>
+<section class="item" id="m17">
+  <div class="num">17</div>
+  <div class="pic none">Без картинки</div>
+  <div class="txt"><h3>Сценарий видео /seo_как_это_работает (1–1,5 мин)</h3><div class="meta">Вместо старого ролика про пост-клик. Запись экрана: сайт → кнопка → бот</div><pre>1. Экран: поисковая выдача по запросу вашей ниши. «Люди ищут услугу в Яндексе. Наша задача — чтобы они находили ваш сайт.»
 2. Экран: статья на сайте с блоком «Скачать гайд». «Статья отвечает на вопрос человека, а в конце — предложение забрать гайд.»
 3. Экран: переход в Telegram, бот выдаёт гайд. «Кнопка ведёт в бота, он выдаёт гайд бесплатно.»
 4. Экран: серия прогрева в боте. «Несколько дней бот присылает полезные сообщения.»
 5. Экран: кнопка «Написать». «Когда человек готов, он пишет вам.»
-6. Итог: «SEO набирает силу постепенно: первые визиты — через 3–6 недель, рост — через 2–4 месяца. Мы никому не обещаем мгновенных заявок.»`]
-];
-const nav = document.getElementById('nav');
-document.querySelectorAll('.block[id^="c-"]').forEach(b=>{
-  const l=b.querySelector('.label span').textContent;
-  const a=document.createElement('a');a.href='#'+b.id;a.textContent=l.split(' — ')[0];nav.appendChild(a);
+6. Итог: «SEO набирает силу постепенно: первые визиты — через 3–6 недель, рост — через 2–4 месяца. Мы никому не обещаем мгновенных заявок.»</pre><button class="btn" data-i="16">Скопировать текст</button></div>
+</section>
+</div>
+<script>
+const TEXTS=["Это рабочий чат — здесь будем вести ваш проект от сегодняшнего дня до поставленных задач.\n\nВести ваш проект будет проектный менеджер {ИМЯ_ПМ} — {НИК_ПМ}.\nУ {ИМЯ_ПМ} большой опыт — поможет с вопросами и внесёт правки по необходимости.\n\nРады, что вы с нами 🙏","Ответьте на вопросы ниже — это нужно для точных целевых заявок. Нет ответа или не уверены — просто пропускайте. Можно голосовым.\n\n🏢 О БИЗНЕСЕ\n1. Сфера/ниша (напр.: психолог, брокер по новостройкам)\n2. Конкретное предложение — что продаёте (напр.: «Продвижение Instagram»)\n3. Город(а) работы\n4. Тип клиента: B2B / B2C / B2G\n\n📊 ПОКАЗАТЕЛИ\n5. Сколько клиентов сейчас в месяц (напр.: 5)\n6. Желаемая выручка в месяц (напр.: 700 000 ₽)\n7. Клиентский цикл (разовая покупка / подписка / долгий проект)\n\n💰 УСЛУГИ И ЦЕНЫ\n8. Список услуг с ценами, нумеруйте 8.1, 8.2...\nНапр.: 8.1 Курс — от 999 ₽, 8.2 Сессия 1.5ч — 7 500 ₽\n\n👤 АУДИТОРИЯ\n9. Портрет идеального клиента (напр.: «Женщины 25-35, Москва»)\n10. Главная боль аудитории (напр.: «Нет заявок с сайта»)\n11. Ключевое возражение (напр.: «Дорого»)\n12. Измеримый результат (напр.: «+40% заявок»)\n13. УТП (напр.: «Первый месяц бесплатно»)\n\n🔗 Ссылки: ВК, ТГ, Instagram, бот, сайт, YouTube/Рутуб","Пара терминов, которые будут встречаться в переписке — коротко объясняем:","Вот как человек проходит путь от поиска в Яндексе до обращения к вам.\n\nВажно: это путь через поисковое продвижение. Заявки приходят не мгновенно, а нарастают по мере того, как сайт набирает позиции.","Здравствуйте! @{НИК_КЛИЕНТА}\n\nСайт:\n\n{ССЫЛКА_НА_САЙТ}\n\nСайт — главная точка входа: его мы будем продвигать в поиске. Кнопки на сайте и в статьях ведут в Telegram-бота, где человек получает гайд и проходит прогрев. Для активации запустите бота по ссылке ниже:\n\n{DEEP_LINK_БОТА}\n\nПравки вносятся один раз — соберите все пожелания в одно текстовое сообщение (скриншоты и голосовые не принимаются техспециалистом), если потребуется что-то поправить.\n\nЕсли нужно добавить фото — присылайте ТОЛЬКО ссылкой на Яндекс.Диск с открытым доступом («доступно всем, у кого есть ссылка»), мы извлечём фото оттуда. По-другому техспециалист и программа файлы не принимают.\n\nТакже нужно уточнить пару моментов:\n1. {ЗАГЛУШКА_1}\n2. {ЗАГЛУШКА_2}\n\nКогда напишете все правки, обязательно добавьте фразу, что это всё — так мы поймём, что можно брать правки в работу.","Готов этап «Упаковка» — все материалы созданы: гайд, бот с прогревом и сайт, настроенный под поисковое продвижение.\n\nПожалуйста, посмотрите отчёт и напишите:\n«Принимаю» — если всё устраивает, переходим к следующему этапу","Что нужно сделать дальше:\n\n1. Зарегистрируйтесь в личном кабинете по ссылке:\n{ССЫЛКА_НА_ПЛАТФОРМУ}\n\nИнвайт-код: {ИНВАЙТ_КОД}\n\n2. После регистрации подтвердите аккаунт через e-mail и пришлите нам логин и пароль — чтобы мы подключили ваш проект.\n\n3. Прикрепите в личном кабинете подписанный акт — без него кабинет остаётся заблокирован.\n\n4. В кабинете вы увидите раздел «Распаковка», рекомендации и отчёты по задачам. Само продвижение сайта ведёт наша команда; от вас — согласования и ответы на вопросы.","Как это работает:\n\nМы продвигаем ваш сайт в поиске — в Яндексе и Google — по запросам, которые вводят люди, когда ищут вашу услугу или ответ на свой вопрос. Человек приходит на сайт, видит предложение бесплатного гайда и по кнопке переходит в Telegram-бота. Бот выдаёт гайд и несколько дней прогревает полезными сообщениями. После этого человек сам пишет вам.\n\nЧестно о сроках: SEO — не мгновенная реклама. Первые визиты из поиска обычно появляются через 3–6 недель, рост по средним запросам — через 2–4 месяца при регулярных публикациях. Позиции и число заявок гарантировать нельзя: они зависят от конкуренции в вашей нише и регионе. Зато результат накапливается и не пропадает, когда заканчивается бюджет.\n\nЧто делаете вы:\n1. Согласовываете материалы и отвечаете на наши вопросы\n2. Когда человек пишет вам после бота — общаетесь с ним и ведёте к оплате\n3. Если нужно быстрее — можно подключить платную рекламу отдельно (список пришлём)\n\nВаш персональный менеджер — {ИМЯ_ПМ} ({НИК_ПМ}). Поможет с настройками и ответит на вопросы.","Что ожидать и когда — на картинке. Это типовые ориентиры, не обещание: сроки зависят от конкуренции в вашей нише.","Так будет работать бот после того, как человек нажал кнопку на сайте. Тексты сообщений согласуем с вами — если что-то захотите изменить, скажите.","Чтобы точно настроить продвижение, уточните, пожалуйста:\n\n1. В каких городах или регионах вы работаете (или онлайн по всей стране)?\n2. Какие 3–5 услуг для вас приоритетные?\n3. Как ваши клиенты называют эту услугу своими словами — что они вбивают в поиск?\n4. 2–3 сайта конкурентов, на которые вы ориентируетесь (по желанию)\n5. Есть ли у сайта свой домен?\n\nМожно голосовым.","Здравствуйте 👋\n\nЯ ваш персональный менеджер — {ИМЯ_ПМ} ({НИК_ПМ}). Начинаем продвигать ваш сайт в поиске.\n\nПосле регистрации в кабинете пришлите, пожалуйста, сюда логин и пароль.\n\nПервые недели уходят на настройку и индексацию сайта — заявок в это время ждать рано, это нормальный этап. Ориентиры по срокам — на картинке выше.\n\nОтличного дня! 🙂","Показываем всю дорогу сразу — какие этапы нас ждут от упаковки до итогов за 3 месяца.","Прикрепляем короткое видео, как работать в личном кабинете:\n{ССЫЛКА_НА_ПЛАТФОРМУ}\n\nЧто в видео:\n\n— Раздел «Распаковка» — фундамент: кто ваш клиент, чем вы отличаетесь, как продаёте.\nЧерновики уже готовы, нужно только поправить под себя.\n\n— Блок рекомендаций — что публиковать и куда, и как прикладывать отчёты, чтобы сайт набирал вес в поиске.\n\nПосмотрите один раз полностью — дальше будет легко ориентироваться самим.\n\nПосле просмотра:\n1. Начните проходить задачи в блоке рекомендаций по порядку\n2. Прикладывайте отчёты к выполненным задачам — так быстрее проверим\n\nВопросы — пишите сюда 🙂","Ставим постоянные задачи по продвижению вашего сайта — их наша команда делает без дополнительного бюджета с вашей стороны на весь срок сотрудничества.\n\nОт вас нужно только согласовывать содержание — публикуем и ведём мы.\n\nСписок задач — на картинке. Если всё устраивает, просто подтвердите — и запускаем.","Если захотите получать заявки быстрее, чем набирает вес SEO, можно параллельно подключить платные каналы — это отдельный бюджет, подключаем только по вашему желанию.\n\nСписок и цены — на картинке.\n\nПлатная реклама ведёт на тот же сайт и в того же бота, так что всё работает вместе. Пишите — согласуем и запустим.","1. Экран: поисковая выдача по запросу вашей ниши. «Люди ищут услугу в Яндексе. Наша задача — чтобы они находили ваш сайт.»\n2. Экран: статья на сайте с блоком «Скачать гайд». «Статья отвечает на вопрос человека, а в конце — предложение забрать гайд.»\n3. Экран: переход в Telegram, бот выдаёт гайд. «Кнопка ведёт в бота, он выдаёт гайд бесплатно.»\n4. Экран: серия прогрева в боте. «Несколько дней бот присылает полезные сообщения.»\n5. Экран: кнопка «Написать». «Когда человек готов, он пишет вам.»\n6. Итог: «SEO набирает силу постепенно: первые визиты — через 3–6 недель, рост — через 2–4 месяца. Мы никому не обещаем мгновенных заявок.»"];
+document.querySelectorAll('.btn').forEach(b=>b.onclick=async()=>{
+  const t=TEXTS[b.dataset.i];
+  try{await navigator.clipboard.writeText(t);b.textContent='Скопировано ✓';}
+  catch(_){const r=document.createRange();r.selectNodeContents(b.parentNode.querySelector('pre'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Выделено — копируйте';}
+  setTimeout(()=>b.textContent='Скопировать текст',1800);
 });
-const t=document.createElement('a');t.href='#texts';t.textContent='Тексты';nav.appendChild(t);
-
-const box=document.getElementById('msgs');
-MSGS.forEach(([title,meta,text])=>{
-  const d=document.createElement('div');d.className='msg';
-  d.innerHTML='<h3></h3><div class="meta"></div><pre></pre><button class="btn">Скопировать</button>';
-  d.querySelector('h3').textContent=title;
-  d.querySelector('.meta').textContent=meta;
-  d.querySelector('pre').textContent=text;
-  d.querySelector('button').onclick=async e=>{
-    try{await navigator.clipboard.writeText(text);e.target.textContent='Скопировано ✓';}
-    catch(_){const r=document.createRange();r.selectNodeContents(d.querySelector('pre'));const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent='Выделено — Ctrl+C';}
-    setTimeout(()=>e.target.textContent='Скопировать',1800);
-  };
-  box.appendChild(d);
-});
-
-document.querySelectorAll('[data-png]').forEach(b=>b.onclick=async()=>{
-  const el=document.getElementById(b.dataset.png);
-  if(!window.html2canvas){alert('Скачивание недоступно — просто сделайте скриншот блока');return;}
-  b.textContent='…';
-  try{
-    const c=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true});
-    const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download=b.dataset.png+'.png';a.click();
-  }catch(e){alert('Не вышло — сделайте скриншот блока');}
-  b.textContent='Скачать PNG';
-});
-</script>
-</body>
-</html>
+</script></body></html>
