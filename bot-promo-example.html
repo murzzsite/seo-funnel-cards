@@ -1,88 +1,130 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Продвижение бота Князева</title>
+<title>Аналитика каналов Князева</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Layout: one narrow column; steps are a real sequence; posts as copyable blocks; channel table scrolls inside its own box */
-:root{--bg:#f4f6fa;--card:#fff;--ink:#14213d;--ink2:#4b5870;--line:#dde3ee;--accent:#1f4fd8;--accent-soft:#e8eefc;--warn-bg:#fff4dd;--warn-ink:#6b4400;--ok-bg:#e3f4ea;--ok-ink:#145a32;--bad-bg:#fde8e8;--bad-ink:#8a1c1c;color-scheme:light}
+/* Layout: dense analytical report; funnel of numbers on top, ranked tables with inline ER bars, then the launch plan */
+:root{--bg:#f4f6fa;--card:#fff;--ink:#14213d;--ink2:#4b5870;--line:#dde3ee;--accent:#1f4fd8;--accent-soft:#e8eefc;--bar:#9db6ff;--warn-bg:#fff4dd;--warn-ink:#6b4400;--bad-bg:#fde8e8;--bad-ink:#8a1c1c;color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Inter",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
-.wrap{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Inter",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
 h1{font:700 28px/1.2 "Manrope","Inter",sans-serif;margin:0;text-wrap:balance}
-h2{font:700 19px/1.3 "Manrope","Inter",sans-serif;margin:0 0 8px;text-wrap:balance}
+h2{font:700 19px/1.3 "Manrope","Inter",sans-serif;margin:0 0 6px;text-wrap:balance}
 p{margin:0}
 .lead{color:var(--ink2)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
 .card p+p,.card ul,.card ol{margin-top:8px}
 .card ul,.card ol{padding-left:20px;color:var(--ink2)}
 .card li{margin:4px 0}
-.step{display:flex;gap:14px;align-items:flex-start;margin-top:14px}
-.step:first-of-type{margin-top:0}
-.n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px "Manrope",sans-serif;text-align:center}
-.step>div{min-width:0}
-.note{border-radius:10px;padding:14px 16px;font-size:14px;background:var(--warn-bg);color:var(--warn-ink)}
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.funnel div{background:var(--accent-soft);border-radius:10px;padding:10px 12px;min-width:0}
+.funnel b{display:block;font:700 24px/1.1 "Manrope",sans-serif;color:var(--accent);font-variant-numeric:tabular-nums}
+.funnel span{font-size:12px;color:var(--ink2);display:block;margin-top:4px}
+@media(max-width:640px){.funnel{grid-template-columns:repeat(2,1fr)}}
+.tbl{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
+td a{color:var(--accent);font-weight:600;text-decoration:none}
+.sub{color:var(--ink2);font-size:12.5px}
+.erc{white-space:nowrap}
+.bar{display:inline-block;width:46px;height:7px;background:#e6ebf5;border-radius:4px;margin-right:6px;vertical-align:middle;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--bar)}
+.note{border-radius:10px;padding:12px 14px;font-size:14px;background:var(--warn-bg);color:var(--warn-ink)}
+.bad{background:var(--bad-bg);color:var(--bad-ink);border-radius:10px;padding:12px 14px;font-size:14px}
 .botlink{display:block;margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-size:14px;overflow-wrap:anywhere;text-decoration:none;font-weight:600}
-.post{background:#f8f9fc;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:10px;white-space:pre-line;color:var(--ink);font-size:15px}
+.post{background:#f8f9fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;white-space:pre-line;font-size:14.5px}
 .post b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:6px}
 button{font:600 13px "Inter",sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;margin-top:10px}
-button:focus-visible,a:focus-visible{outline:3px solid #9db6ff;outline-offset:2px}
-.tbl{overflow-x:auto;margin-top:10px}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
-td a{color:var(--accent);font-weight:600;text-decoration:none}
-.tag{display:inline-block;font-size:12px;border-radius:6px;padding:2px 8px;background:var(--accent-soft);color:var(--accent);font-weight:600}
-.ok{background:var(--ok-bg);color:var(--ok-ink)}
-.bad{background:var(--bad-bg);color:var(--bad-ink)}
-.src{font-size:13px;color:var(--ink2);margin-top:10px}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #9db6ff;outline-offset:2px}
+input.price{width:96px;font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+.src{font-size:12.5px;color:var(--ink2);margin-top:8px}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
+.k div{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.k b{display:block;font-size:13px}
+.k span{font-size:13px;color:var(--ink2)}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap">
 
 </head><body>
 <div class="wrap">
   <header>
-    <h1>Продвижение бота-теста: посевы в Telegram</h1>
-    <p class="lead">Василий Князев, тренинг «Чемпион Будущих Продаж». Бот предлагает руководителю короткий тест о сильных и слабых сторонах отдела продаж и ведёт к бесплатной консультации. Ваше время на запуск: около 30 минут.</p>
+    <h1>Аналитика каналов для бота Князева</h1>
+    <p class="lead">Бот-тест отдела продаж, ЦА: руководители и собственники компаний на 10–50 человек. Источник: рейтинги TGStat, срез от 23.10.2026.</p>
   </header>
 
-  <div class="note">Образец пакета на реальных данных. Каналы и цифры взяты из рейтинга TGStat на 23.10.2026. Цены размещений в таблице не указаны: их называют админы каналов или биржа, я придумывать не буду.</div>
+  <section class="card">
+    <h2>Как сужали выборку</h2>
+    <div class="funnel">
+      <div><b>1&nbsp;484</b><span>канала из 9 рубрик: бизнес, маркетинг, экономика, карьера, образование, курсы, право, психология, блоги</span></div>
+      <div><b>1&nbsp;175</b><span>от 8 до 400 тыс. подписчиков</span></div>
+      <div><b>538</b><span>охват поста 7–30 % от подписчиков</span></div>
+      <div><b>327</b><span>индекс цитирования от 100</span></div>
+      <div><b>40</b><span>после ручного отбора по ЦА: 18 в группе А и 22 в группе Б</span></div>
+    </div>
+    <p style="margin-top:12px">Выгрузил топ-100 каждой рубрики по трём сортировкам: подписчики, охват, цитируемость. По всей выборке медианная вовлечённость (охват к подписчикам) 9,9 %. У 20 % каналов охват выше 30 % подписчиков, у 16 % ниже 3 %. Обе группы я считаю подозрительными: в первой часто накрутка просмотров, во второй мёртвая или накрученная аудитория.</p>
+    <p class="src">Вовлечённость (ER) здесь = средний охват поста / подписчики. Индекс цитирования (ИЦ) — показатель TGStat, сколько раз канал репостят и упоминают.</p>
+  </section>
 
   <section class="card">
-    <h2>Что в пакете</h2>
-    <ul>
-      <li>Четыре канала, проверенных по охвату и вовлечённости, и три канала, которые брать без проверки не стоит.</li>
-      <li>Три рекламных поста для проверки на разных каналах.</li>
-      <li>График размещений: один канал в день, чтобы приход людей был виден по каналам.</li>
-      <li>Разбор результата через 3–5 дней после последнего размещения.</li>
-    </ul>
+    <h2>Группа А: брать первыми (18 каналов)</h2>
+    <p class="lead">Критерии: ER 7–30 %, ИЦ от 100, аудитория совпадает с ЦА. Сортировка по ER.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>№</th><th>Канал</th><th>Подписчики</th><th>Охват</th><th>ER, %</th><th>ИЦ</th><th>Сегмент</th></tr></thead>
+      <tbody><tr><td>1</td><td><a href="https://t.me/marketing_back" target="_blank" rel="noopener">@marketing_back</a><br><span class="sub">Закулисье маркетинга</span></td><td>55 256</td><td>13 200</td><td class="erc"><span class="bar"><i style="width:60%"></i></span>23,9</td><td>158</td><td>маркетинг</td></tr><tr><td>2</td><td><a href="https://t.me/marketologjam" target="_blank" rel="noopener">@marketologjam</a><br><span class="sub">Маркетинговый джем</span></td><td>117 847</td><td>27 700</td><td class="erc"><span class="bar"><i style="width:59%"></i></span>23,5</td><td>2524</td><td>маркетинг</td></tr><tr><td>3</td><td><a href="https://t.me/top_biz" target="_blank" rel="noopener">@top_biz</a><br><span class="sub">Топ Бизнес</span></td><td>108 293</td><td>22 700</td><td class="erc"><span class="bar"><i style="width:52%"></i></span>21,0</td><td>158</td><td>общий бизнес</td></tr><tr><td>4</td><td><a href="https://t.me/marketpsy" target="_blank" rel="noopener">@marketpsy</a><br><span class="sub">Психология Маркетинга</span></td><td>172 874</td><td>30 900</td><td class="erc"><span class="bar"><i style="width:45%"></i></span>17,9</td><td>866</td><td>маркетинг, психология</td></tr><tr><td>5</td><td><a href="https://t.me/BusinessAtmosphere" target="_blank" rel="noopener">@BusinessAtmosphere</a><br><span class="sub">Бизнес Атмосфера</span></td><td>122 869</td><td>21 700</td><td class="erc"><span class="bar"><i style="width:44%"></i></span>17,7</td><td>246</td><td>общий бизнес</td></tr><tr><td>6</td><td><a href="https://t.me/BusinesProjects" target="_blank" rel="noopener">@BusinesProjects</a><br><span class="sub">Бизнес Проект</span></td><td>170 410</td><td>23 600</td><td class="erc"><span class="bar"><i style="width:35%"></i></span>13,8</td><td>406</td><td>общий бизнес</td></tr><tr><td>7</td><td><a href="https://t.me/Founder_Startup" target="_blank" rel="noopener">@Founder_Startup</a><br><span class="sub">Фаундер | Бизнес и стартапы</span></td><td>147 719</td><td>19 000</td><td class="erc"><span class="bar"><i style="width:32%"></i></span>12,9</td><td>377</td><td>предприниматели, стартапы</td></tr><tr><td>8</td><td><a href="https://t.me/BusinesAdvisor" target="_blank" rel="noopener">@BusinesAdvisor</a><br><span class="sub">Business Advisor</span></td><td>163 276</td><td>21 000</td><td class="erc"><span class="bar"><i style="width:32%"></i></span>12,9</td><td>406</td><td>общий бизнес</td></tr><tr><td>9</td><td><a href="https://t.me/financovich" target="_blank" rel="noopener">@financovich</a><br><span class="sub">Финансович | Бизнес блог</span></td><td>138 850</td><td>17 200</td><td class="erc"><span class="bar"><i style="width:31%"></i></span>12,4</td><td>179</td><td>предприниматели, финансы</td></tr><tr><td>10</td><td><a href="https://t.me/hikollegi" target="_blank" rel="noopener">@hikollegi</a><br><span class="sub">Из коммерса в е-коммерса</span></td><td>55 727</td><td>6 300</td><td class="erc"><span class="bar"><i style="width:28%"></i></span>11,3</td><td>736</td><td>e-commerce</td></tr><tr><td>11</td><td><a href="https://t.me/business_ru" target="_blank" rel="noopener">@business_ru</a><br><span class="sub">О Бизнесе</span></td><td>50 707</td><td>5 500</td><td class="erc"><span class="bar"><i style="width:27%"></i></span>10,8</td><td>602</td><td>общий бизнес</td></tr><tr><td>12</td><td><a href="https://t.me/retailife" target="_blank" rel="noopener">@retailife</a><br><span class="sub">Ритейл заказывали?</span></td><td>96 457</td><td>10 300</td><td class="erc"><span class="bar"><i style="width:27%"></i></span>10,7</td><td>2143</td><td>ритейл</td></tr><tr><td>13</td><td><a href="https://t.me/commerc" target="_blank" rel="noopener">@commerc</a><br><span class="sub">Коммерс</span></td><td>140 460</td><td>14 600</td><td class="erc"><span class="bar"><i style="width:26%"></i></span>10,4</td><td>905</td><td>коммерция</td></tr><tr><td>14</td><td><a href="https://t.me/costperlead" target="_blank" rel="noopener">@costperlead</a><br><span class="sub">Маркетинг нефильтрованный</span></td><td>108 840</td><td>10 100</td><td class="erc"><span class="bar"><i style="width:23%"></i></span>9,3</td><td>2689</td><td>маркетинг, лиды</td></tr><tr><td>15</td><td><a href="https://t.me/russian_ecom" target="_blank" rel="noopener">@russian_ecom</a><br><span class="sub">Я другое заказывал</span></td><td>82 170</td><td>7 600</td><td class="erc"><span class="bar"><i style="width:23%"></i></span>9,2</td><td>798</td><td>e-commerce</td></tr><tr><td>16</td><td><a href="https://t.me/MarketingQui" target="_blank" rel="noopener">@MarketingQui</a><br><span class="sub">Куй клиента, пока горячо!</span></td><td>147 022</td><td>11 600</td><td class="erc"><span class="bar"><i style="width:20%"></i></span>7,9</td><td>111</td><td>клиенты, продажи</td></tr><tr><td>17</td><td><a href="https://t.me/retailrus" target="_blank" rel="noopener">@retailrus</a><br><span class="sub">Русский ритейл и бизнес</span></td><td>285 266</td><td>21 900</td><td class="erc"><span class="bar"><i style="width:19%"></i></span>7,7</td><td>1692</td><td>ритейл</td></tr><tr><td>18</td><td><a href="https://t.me/iRukovoditel" target="_blank" rel="noopener">@iRukovoditel</a><br><span class="sub">Я — РУКОВОДИТЕЛЬ</span></td><td>31 042</td><td>2 200</td><td class="erc"><span class="bar"><i style="width:18%"></i></span>7,1</td><td>358</td><td>руководители</td></tr></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Группа Б: резерв и проверка (22 каналов)</h2>
+    <p class="lead">Попадают по метрикам, но есть оговорка: ER ниже порога, аудитория шире ЦА или цифры требуют подтверждения у админа.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>№</th><th>Канал</th><th>Подписчики</th><th>Охват</th><th>ER, %</th><th>ИЦ</th><th>Оговорка</th></tr></thead>
+      <tbody><tr><td>1</td><td><a href="https://t.me/b_retail" target="_blank" rel="noopener">@b_retail</a><br><span class="sub">Беспощадный ритейл</span></td><td>138 630</td><td>7 900</td><td class="erc"><span class="bar"><i style="width:14%"></i></span>5,7</td><td>2148</td><td>ритейл, ER ниже 7 %</td></tr><tr><td>2</td><td><a href="https://t.me/startup_club24" target="_blank" rel="noopener">@startup_club24</a><br><span class="sub">Стартап на завтрак</span></td><td>76 261</td><td>5 100</td><td class="erc"><span class="bar"><i style="width:17%"></i></span>6,7</td><td>377</td><td>стартапы, ER ниже 7 %</td></tr><tr><td>3</td><td><a href="https://t.me/Business_University" target="_blank" rel="noopener">@Business_University</a><br><span class="sub">Бизнес Кийосаки</span></td><td>172 846</td><td>20 700</td><td class="erc"><span class="bar"><i style="width:30%"></i></span>12,0</td><td>246</td><td>аудитория мотивационная, шире ЦА</td></tr><tr><td>4</td><td><a href="https://t.me/ca11_you" target="_blank" rel="noopener">@ca11_you</a><br><span class="sub">мы вам перезвоним</span></td><td>139 699</td><td>15 800</td><td class="erc"><span class="bar"><i style="width:28%"></i></span>11,3</td><td>714</td><td>сегмент неясен по названию, смотреть ленту</td></tr><tr><td>5</td><td><a href="https://t.me/hr_nom" target="_blank" rel="noopener">@hr_nom</a><br><span class="sub">Кадры | HR | найм</span></td><td>16 016</td><td>3 300</td><td class="erc"><span class="bar"><i style="width:52%"></i></span>20,6</td><td>156</td><td>точное попадание в найм, но 16 тыс. подписчиков</td></tr><tr><td>6</td><td><a href="https://t.me/mednikova_management" target="_blank" rel="noopener">@mednikova_management</a><br><span class="sub">Медникова про менеджмент</span></td><td>15 763</td><td>592</td><td class="erc"><span class="bar"><i style="width:9%"></i></span>3,8</td><td>178</td><td>ER 3,8 %: охват мал для 15 тыс.</td></tr><tr><td>7</td><td><a href="https://t.me/inefficient_manager" target="_blank" rel="noopener">@inefficient_manager</a><br><span class="sub">Неэффективный менеджер / Бережливое производство</span></td><td>10 391</td><td>6 000</td><td class="erc"><span class="bar"><i style="width:100%"></i></span>57,7</td><td>105</td><td>ER 57 % на 10 тыс.: проверить статистику у админа</td></tr><tr><td>8</td><td><a href="https://t.me/prbezposhady" target="_blank" rel="noopener">@prbezposhady</a><br><span class="sub">Беспощадный пиарщик</span></td><td>151 659</td><td>20 200</td><td class="erc"><span class="bar"><i style="width:33%"></i></span>13,3</td><td>3221</td><td>аудитория PR, ЦА Князева только частично</td></tr><tr><td>9</td><td><a href="https://t.me/marketingpause" target="_blank" rel="noopener">@marketingpause</a><br><span class="sub">Рекламная пауза</span></td><td>108 610</td><td>26 900</td><td class="erc"><span class="bar"><i style="width:62%"></i></span>24,8</td><td>1695</td><td>аудитория рекламщиков, одна из ниш ЦА</td></tr><tr><td>10</td><td><a href="https://t.me/bossy_marketing" target="_blank" rel="noopener">@bossy_marketing</a><br><span class="sub">BOSSY MARKETING</span></td><td>197 698</td><td>81 100</td><td class="erc"><span class="bar"><i style="width:100%"></i></span>41,0</td><td>204</td><td>ER 41 %: проверить накрутку до покупки</td></tr><tr><td>11</td><td><a href="https://t.me/retail_kitchen" target="_blank" rel="noopener">@retail_kitchen</a><br><span class="sub">Кухня ритейла</span></td><td>65 386</td><td>3 500</td><td class="erc"><span class="bar"><i style="width:13%"></i></span>5,4</td><td>1990</td><td>ER 5,4 %: ниже порога</td></tr><tr><td>12</td><td><a href="https://t.me/GuerrillaMarketing" target="_blank" rel="noopener">@GuerrillaMarketing</a><br><span class="sub">Партизанский Маркетинг</span></td><td>105 154</td><td>10 400</td><td class="erc"><span class="bar"><i style="width:25%"></i></span>9,9</td><td>915</td><td>аудитория маркетологов, шире ЦА</td></tr><tr><td>13</td><td><a href="https://t.me/Godketing" target="_blank" rel="noopener">@Godketing</a><br><span class="sub">Боги маркетинга</span></td><td>112 254</td><td>8 000</td><td class="erc"><span class="bar"><i style="width:18%"></i></span>7,1</td><td>1179</td><td>ER 7,1 %, аудитория маркетологов</td></tr><tr><td>14</td><td><a href="https://t.me/smmrus" target="_blank" rel="noopener">@smmrus</a><br><span class="sub">Русский маркетинг</span></td><td>125 144</td><td>8 900</td><td class="erc"><span class="bar"><i style="width:18%"></i></span>7,1</td><td>875</td><td>аудитория SMM, не ЦА</td></tr><tr><td>15</td><td><a href="https://t.me/Busspod" target="_blank" rel="noopener">@Busspod</a><br><span class="sub">5 бизнес подкастов</span></td><td>175 553</td><td>18 700</td><td class="erc"><span class="bar"><i style="width:27%"></i></span>10,7</td><td>307</td><td>подкасты, мотивационный контент</td></tr><tr><td>16</td><td><a href="https://t.me/podkasty24" target="_blank" rel="noopener">@podkasty24</a><br><span class="sub">Бизнес | Подкасты</span></td><td>187 331</td><td>18 500</td><td class="erc"><span class="bar"><i style="width:25%"></i></span>9,9</td><td>434</td><td>подкасты, мотивационный контент</td></tr><tr><td>17</td><td><a href="https://t.me/misli_bogatich" target="_blank" rel="noopener">@misli_bogatich</a><br><span class="sub">Мысли богатых | бизнес блог</span></td><td>174 195</td><td>15 900</td><td class="erc"><span class="bar"><i style="width:23%"></i></span>9,1</td><td>274</td><td>мотивационный контент</td></tr><tr><td>18</td><td><a href="https://t.me/master_businessa" target="_blank" rel="noopener">@master_businessa</a><br><span class="sub">Мастер Бизнеса</span></td><td>128 887</td><td>7 600</td><td class="erc"><span class="bar"><i style="width:15%"></i></span>5,9</td><td>214</td><td>ER 5,9 %: ниже порога</td></tr><tr><td>19</td><td><a href="https://t.me/vtb_smb" target="_blank" rel="noopener">@vtb_smb</a><br><span class="sub">ВТБ для бизнеса</span></td><td>108 364</td><td>19 400</td><td class="erc"><span class="bar"><i style="width:45%"></i></span>17,9</td><td>235</td><td>корпоративный канал банка</td></tr><tr><td>20</td><td><a href="https://t.me/yourtypicalclient" target="_blank" rel="noopener">@yourtypicalclient</a><br><span class="sub">Клиент</span></td><td>47 615</td><td>24 500</td><td class="erc"><span class="bar"><i style="width:100%"></i></span>51,5</td><td>132</td><td>ER 51 % на 47 тыс.: проверить статистику</td></tr><tr><td>21</td><td><a href="https://t.me/zakupki_time" target="_blank" rel="noopener">@zakupki_time</a><br><span class="sub">Время госзакупок</span></td><td>24 746</td><td>3 700</td><td class="erc"><span class="bar"><i style="width:37%"></i></span>15,0</td><td>945</td><td>узкая ниша госзакупок</td></tr><tr><td>22</td><td><a href="https://t.me/russianleaders" target="_blank" rel="noopener">@russianleaders</a><br><span class="sub">Лидеры России</span></td><td>17 815</td><td>1 700</td><td class="erc"><span class="bar"><i style="width:24%"></i></span>9,5</td><td>593</td><td>ER 9,5 %, но 17 тыс. и охват 1,7 тыс.</td></tr></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Сетка из 13 одинаковых каналов</h2>
+    <p class="lead">Подписчики 63 284–74 225, охват 13 800–16 300, ER 19,9–22,6 %, ИЦ 91,5–99,1. Такой разброс у независимых каналов не бывает, похоже на одну сеть одного владельца. Аудитория, скорее всего, пересекается: берём не больше одного канала из сетки, остальные не покупаем.</p>
+    <div class="tbl"><table style="min-width:520px">
+      <thead><tr><th>Канал</th><th>Подписчики</th><th>Охват</th><th>ER, %</th><th>ИЦ</th></tr></thead>
+      <tbody><tr><td><a href="https://t.me/bsn_hub" target="_blank" rel="noopener">@bsn_hub</a></td><td>63 708</td><td>13 800</td><td>21,7</td><td>99,1</td></tr><tr><td><a href="https://t.me/bikontora" target="_blank" rel="noopener">@bikontora</a></td><td>74 225</td><td>16 300</td><td>22,0</td><td>97,7</td></tr><tr><td><a href="https://t.me/tgb_ru" target="_blank" rel="noopener">@tgb_ru</a></td><td>67 890</td><td>14 100</td><td>20,8</td><td>97,7</td></tr><tr><td><a href="https://t.me/delovy_ru" target="_blank" rel="noopener">@delovy_ru</a></td><td>67 243</td><td>14 800</td><td>22,0</td><td>96,9</td></tr><tr><td><a href="https://t.me/clubusiness" target="_blank" rel="noopener">@clubusiness</a></td><td>68 804</td><td>13 800</td><td>20,1</td><td>96,7</td></tr><tr><td><a href="https://t.me/bznachit" target="_blank" rel="noopener">@bznachit</a></td><td>70 972</td><td>14 800</td><td>20,9</td><td>96,4</td></tr><tr><td><a href="https://t.me/finapla" target="_blank" rel="noopener">@finapla</a></td><td>69 777</td><td>13 900</td><td>19,9</td><td>96</td></tr><tr><td><a href="https://t.me/b_prost" target="_blank" rel="noopener">@b_prost</a></td><td>69 878</td><td>14 600</td><td>20,9</td><td>94,7</td></tr><tr><td><a href="https://t.me/commerstype" target="_blank" rel="noopener">@commerstype</a></td><td>66 311</td><td>14 100</td><td>21,3</td><td>94,1</td></tr><tr><td><a href="https://t.me/commersru" target="_blank" rel="noopener">@commersru</a></td><td>65 518</td><td>14 200</td><td>21,7</td><td>93,1</td></tr><tr><td><a href="https://t.me/bi_daily" target="_blank" rel="noopener">@bi_daily</a></td><td>63 284</td><td>13 900</td><td>22,0</td><td>92,3</td></tr><tr><td><a href="https://t.me/soyuztg" target="_blank" rel="noopener">@soyuztg</a></td><td>73 513</td><td>16 000</td><td>21,8</td><td>91,6</td></tr><tr><td><a href="https://t.me/bizmoy" target="_blank" rel="noopener">@bizmoy</a></td><td>66 418</td><td>15 000</td><td>22,6</td><td>91,5</td></tr></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Не берём</h2>
+    <h2 style="font-size:16px;margin-top:6px">Подозрение на накрутку</h2>
+    <div class="tbl"><table style="min-width:620px">
+      <thead><tr><th>Канал</th><th>Подписчики</th><th>Охват</th><th>ER, %</th><th>ИЦ</th><th>Причина</th></tr></thead>
+      <tbody><tr><td><a href="https://t.me/biznesbezglyanca" target="_blank" rel="noopener">@biznesbezglyanca</a></td><td>258 485</td><td>107 200</td><td>41,5</td><td>2,2</td><td>охват 41 % от подписчиков при индексе цитирования 2,2</td></tr><tr><td><a href="https://t.me/rrentabelno" target="_blank" rel="noopener">@rrentabelno</a></td><td>335 661</td><td>102 300</td><td>30,5</td><td>1,3</td><td>охват 30 % от подписчиков при индексе цитирования 1,3</td></tr><tr><td><a href="https://t.me/adultbiz_real" target="_blank" rel="noopener">@adultbiz_real</a></td><td>159 680</td><td>48 200</td><td>30,2</td><td>7,6</td><td>охват 30 % от подписчиков при индексе цитирования 7,6</td></tr><tr><td><a href="https://t.me/Business_DNA_Russia" target="_blank" rel="noopener">@Business_DNA_Russia</a></td><td>291 280</td><td>27 300</td><td>9,4</td><td>0,2</td><td>индекс цитирования 0,2: канал почти никто не репостит</td></tr><tr><td><a href="https://t.me/alfa_tops" target="_blank" rel="noopener">@alfa_tops</a></td><td>12 016</td><td>36 700</td><td>305,4</td><td>460</td><td>охват в 3 раза больше числа подписчиков</td></tr><tr><td><a href="https://t.me/tgmarketing" target="_blank" rel="noopener">@tgmarketing</a></td><td>6 632</td><td>14 200</td><td>214,1</td><td>144</td><td>охват в 2 раза больше числа подписчиков</td></tr><tr><td><a href="https://t.me/finmycle" target="_blank" rel="noopener">@finmycle</a></td><td>11 239</td><td>5 500</td><td>48,9</td><td>395</td><td>охват 49 % на 11 тыс. подписчиков</td></tr></tbody></table></div>
+    <h2 style="font-size:16px;margin-top:16px">Мёртвая аудитория и корпоративные каналы</h2>
+    <div class="tbl"><table style="min-width:560px">
+      <thead><tr><th>Канал</th><th>Подписчики</th><th>Охват</th><th>ER, %</th><th>Причина</th></tr></thead>
+      <tbody><tr><td><a href="https://t.me/rb_ru" target="_blank" rel="noopener">@rb_ru</a></td><td>360 362</td><td>6 100</td><td>1,7</td><td>ER 1,7 %</td></tr><tr><td><a href="https://t.me/Hour_25" target="_blank" rel="noopener">@Hour_25</a></td><td>246 885</td><td>4 500</td><td>1,8</td><td>ER 1,8 %</td></tr><tr><td><a href="https://t.me/rus_buzines" target="_blank" rel="noopener">@rus_buzines</a></td><td>124 907</td><td>5 000</td><td>4,0</td><td>ER 4,0 %</td></tr><tr><td><a href="https://t.me/from_CEO" target="_blank" rel="noopener">@from_CEO</a></td><td>162 309</td><td>3 700</td><td>2,3</td><td>ER 2,3 %</td></tr><tr><td><a href="https://t.me/pervmarketing" target="_blank" rel="noopener">@pervmarketing</a></td><td>131 077</td><td>3 000</td><td>2,3</td><td>ER 2,3 %</td></tr><tr><td><a href="https://t.me/sbermarketing" target="_blank" rel="noopener">@sbermarketing</a></td><td>351 298</td><td>2 300</td><td>0,7</td><td>ER 0,7 %, корпоративный</td></tr><tr><td><a href="https://t.me/businessmud" target="_blank" rel="noopener">@businessmud</a></td><td>127 158</td><td>3 100</td><td>2,4</td><td>ER 2,4 %</td></tr><tr><td><a href="https://t.me/ii_ekspert" target="_blank" rel="noopener">@ii_ekspert</a></td><td>44 123</td><td>162</td><td>0,4</td><td>ER 0,4 %</td></tr><tr><td><a href="https://t.me/eruditurl24" target="_blank" rel="noopener">@eruditurl24</a></td><td>96 748</td><td>1 100</td><td>1,1</td><td>ER 1,1 %</td></tr><tr><td><a href="https://t.me/avito_b2b" target="_blank" rel="noopener">@avito_b2b</a></td><td>159 052</td><td>4 700</td><td>3,0</td><td>ER 3,0 %, корпоративный</td></tr><tr><td><a href="https://t.me/sberbusiness" target="_blank" rel="noopener">@sberbusiness</a></td><td>236 992</td><td>11 600</td><td>4,9</td><td>корпоративный канал банка</td></tr><tr><td><a href="https://t.me/popsmarketing" target="_blank" rel="noopener">@popsmarketing</a></td><td>109 936</td><td>4 600</td><td>4,2</td><td>ER 4,2 %</td></tr></tbody></table></div>
+    <p class="src">Это оценка по цифрам рейтинга, а не доказательство. Спорный канал можно купить, если админ пришлёт скриншоты статистики Telegram за последние 7 дней и они совпадут.</p>
+  </section>
+
+  <section class="card">
+    <h2>План запуска: первая волна</h2>
+    <p class="lead">Пять каналов из группы А, по одному на каждый сегмент ЦА, один пост (вариант А) во всех. Так разница в результате объясняется каналом, а не текстом. Каналы по дням, чтобы приход пользователей в бота делился по датам: метки в ссылке бот не принимает.</p>
+    <div class="tbl"><table style="min-width:560px">
+      <thead><tr><th>№</th><th>Канал</th><th>Охват</th><th>Дата</th><th>Цена, ₽</th><th>CPM, ₽</th></tr></thead>
+      <tbody><tr data-reach="23600"><td>1</td><td><a href="https://t.me/BusinesProjects" target="_blank" rel="noopener">@BusinesProjects</a><br><span class="sub">общий бизнес</span></td><td>23 600</td><td>пн 26.10</td><td><input class="price" type="number" min="0" step="100" inputmode="numeric" placeholder="₽" aria-label="Цена размещения @BusinesProjects"></td><td class="cpm">—</td></tr><tr data-reach="19000"><td>2</td><td><a href="https://t.me/Founder_Startup" target="_blank" rel="noopener">@Founder_Startup</a><br><span class="sub">предприниматели</span></td><td>19 000</td><td>вт 27.10</td><td><input class="price" type="number" min="0" step="100" inputmode="numeric" placeholder="₽" aria-label="Цена размещения @Founder_Startup"></td><td class="cpm">—</td></tr><tr data-reach="11600"><td>3</td><td><a href="https://t.me/MarketingQui" target="_blank" rel="noopener">@MarketingQui</a><br><span class="sub">клиенты, продажи</span></td><td>11 600</td><td>ср 28.10</td><td><input class="price" type="number" min="0" step="100" inputmode="numeric" placeholder="₽" aria-label="Цена размещения @MarketingQui"></td><td class="cpm">—</td></tr><tr data-reach="10300"><td>4</td><td><a href="https://t.me/retailife" target="_blank" rel="noopener">@retailife</a><br><span class="sub">ритейл</span></td><td>10 300</td><td>чт 29.10</td><td><input class="price" type="number" min="0" step="100" inputmode="numeric" placeholder="₽" aria-label="Цена размещения @retailife"></td><td class="cpm">—</td></tr><tr data-reach="2200"><td>5</td><td><a href="https://t.me/iRukovoditel" target="_blank" rel="noopener">@iRukovoditel</a><br><span class="sub">руководители</span></td><td>2 200</td><td>пт 30.10</td><td><input class="price" type="number" min="0" step="100" inputmode="numeric" placeholder="₽" aria-label="Цена размещения @iRukovoditel"></td><td class="cpm">—</td></tr></tbody>
+      <tfoot><tr><td colspan="4"><b>Итого</b></td><td id="sum">—</td><td id="cpmall">—</td></tr></tfoot></table></div>
+    <p class="src">Цены размещений называют админы или биржа. Впишите цену, и таблица посчитает стоимость 1000 просмотров (CPM). Если у канала CPM заметно выше, чем у остальных, торгуйтесь или заменяйте его резервным из группы А.</p>
+    <p style="margin-top:12px"><b>Вторая волна (02–06.11):</b> два лучших канала по цене человека, прошедшего тест, повторяем с постами Б и В. Остальные места занимают каналы из группы А.</p>
+    <p style="margin-top:8px"><b>Решающий показатель:</b> цена одного человека, прошедшего тест = цена размещения / новые пользователи бота за день после размещения (по выгрузке бота).</p>
+  </section>
+
+  <section class="card">
+    <h2>Как заказывать</h2>
+    <ol>
+      <li>Пополните баланс на бирже рекламы (например, Telega.in).</li>
+      <li>Найдите канал из таблицы, нажмите «Купить рекламу», вставьте пост и ссылку на бота, выберите дату из плана. Даты не сдвигайте.</li>
+      <li>Биржа запросит данные для маркировки рекламы (форма, ИНН) и выдаст нужный токен.</li>
+      <li>Через 3–5 дней после последнего размещения напишите «готово»: я посчитаю цену результата по каждому каналу.</li>
+    </ol>
     <a class="botlink" href="https://t.me/trip_wire_super_bot?start=835143061fdc" target="_blank" rel="noopener">Ссылка на бота: https://t.me/trip_wire_super_bot?start=835143061fdc</a>
     <p class="src">Ссылка одна для всех постов. Её нужно вставлять без изменений: добавленные к ней метки бот не принимает.</p>
-  </section>
-
-  <section class="card">
-    <h2>Инструкция</h2>
-    <div class="step"><span class="n">1</span><div>
-      <p><b>Пополните баланс на бирже рекламы</b> (например, Telega.in, вход через Telegram, раздел «Баланс»). Сумму назову после того, как узнаем цены на размещение в четырёх каналах.</p>
-    </div></div>
-    <div class="step"><span class="n">2</span><div>
-      <p><b>Закажите размещения по таблице.</b></p>
-      <ol>
-        <li>Найдите канал из строки таблицы на бирже и нажмите «Купить рекламу».</li>
-        <li>Вставьте пост из колонки «Пост» (кнопка «Копировать» ниже) и ссылку на бота.</li>
-        <li>Выберите дату из колонки «Дата» и отправьте на согласование. Даты не сдвигайте: по ним я считаю результат каждого канала.</li>
-        <li>Биржа запросит данные для маркировки рекламы (форма, ИНН). Это обязательная процедура для рекламы в Telegram, биржа сама выдаст нужный токен.</li>
-      </ol>
-    </div></div>
-    <div class="step"><span class="n">3</span><div>
-      <p><b>Напишите мне «готово» через 3–5 дней после последнего размещения.</b> Остальное сделаю я: посчитаю, сколько людей пришло с каждого канала и во сколько обошёлся один человек, и скажу, куда докупать.</p>
-    </div></div>
-    <p style="margin-top:14px;color:var(--ink2)">Если админ канала просит правки или отказывает, пришлите мне его сообщение. Я подготовлю ответ.</p>
-  </section>
-
-  <section class="card">
-    <h2>Посты для проверки</h2>
-    <p class="lead">Три варианта на разных каналах. Сравнение приблизительное, потому что каналы разные: сначала смотрим, какие каналы работают, потом уточняем тексты.</p>
-
     <div class="post" id="p1"><b>Вариант А. Вопрос</b>Менеджеры не выполняют план, а вы не понимаете, где именно провал?
 
 Короткий тест покажет сильные и слабые стороны вашего отдела продаж. Займёт пару минут, результат сразу в чате.
@@ -90,7 +132,6 @@ td a{color:var(--accent);font-weight:600;text-decoration:none}
 Реклама. [данные рекламодателя, их подставит биржа]
 👉 Пройти тест: https://t.me/trip_wire_super_bot?start=835143061fdc</div>
     <button data-copy="p1">Копировать</button>
-
     <div class="post" id="p2"><b>Вариант Б. Признаки</b>Три признака, что отдел продаж работает вполсилы:
 — план срывается из месяца в месяц;
 — менеджеры теряются на возражениях и не доводят сделку;
@@ -101,7 +142,6 @@ td a{color:var(--accent);font-weight:600;text-decoration:none}
 Реклама. [данные рекламодателя, их подставит биржа]
 👉 https://t.me/trip_wire_super_bot?start=835143061fdc</div>
     <button data-copy="p2">Копировать</button>
-
     <div class="post" id="p3"><b>Вариант В. Коротко</b>Тест для собственников и руководителей: где у вашего отдела продаж слабое место?
 Несколько вопросов, и вы увидите картину. Дальше можно записаться на бесплатную консультацию.
 
@@ -111,43 +151,13 @@ td a{color:var(--accent);font-weight:600;text-decoration:none}
   </section>
 
   <section class="card">
-    <h2>Каналы и график</h2>
-    <p class="lead">Аудитория: собственники и руководители. Охват и число подписчиков по данным TGStat на 23.10.2026. Вовлечённость считаю как средний охват поста к числу подписчиков.</p>
-    <div class="tbl">
-      <table>
-        <thead><tr><th>№</th><th>Канал</th><th>Подписчики</th><th>Охват поста</th><th>Вовлечённость</th><th>Пост</th><th>Дата</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><a href="https://t.me/BusinesAdvisor" target="_blank" rel="noopener">@BusinesAdvisor</a><br>Business Advisor</td><td>163 276</td><td>21 000</td><td>12,9 %</td><td><span class="tag">А</span></td><td>пн 26.10</td></tr>
-          <tr><td>2</td><td><a href="https://t.me/BusinesProjects" target="_blank" rel="noopener">@BusinesProjects</a><br>Бизнес Проект</td><td>170 410</td><td>23 600</td><td>13,9 %</td><td><span class="tag">Б</span></td><td>вт 27.10</td></tr>
-          <tr><td>3</td><td><a href="https://t.me/financovich" target="_blank" rel="noopener">@financovich</a><br>Финансович | Бизнес блог</td><td>138 850</td><td>17 200</td><td>12,4 %</td><td><span class="tag">В</span></td><td>ср 28.10</td></tr>
-          <tr><td>4</td><td><a href="https://t.me/master_businessa" target="_blank" rel="noopener">@master_businessa</a><br>Мастер Бизнеса</td><td>128 887</td><td>7 600</td><td>5,9 %</td><td><span class="tag">А</span></td><td>чт 29.10</td></tr>
-        </tbody>
-      </table>
+    <h2>Что проверено и что нет</h2>
+    <div class="k">
+      <div><b>Проверено</b><span>Подписчики, средний охват поста, индекс цитирования для 1&nbsp;484 каналов. Расчёт ER, поиск аномалий и сети клонов по этим данным.</span></div>
+      <div><b>Не проверено</b><span>Возраст каналов, пол и география аудитории, динамика подписчиков: TGStat после серии запросов включил проверку на бота, я её не обходил. Цены размещений.</span></div>
+      <div><b>Пробел в выборке</b><span>Узких каналов про продажи и РОП в топ-100 рубрик нет. Чтобы найти их, нужен поиск TGStat или Telemetr с авторизацией: у меня доступа нет.</span></div>
     </div>
-
-    <h2 style="margin-top:18px">Не берём без проверки</h2>
-    <p class="lead">У этих каналов охват поста подозрительно высокий для их числа подписчиков при низком индексе цитирования. Так бывает при накрутке просмотров или при рекламных заливках. Перед покупкой запрашиваем у админа скриншоты статистики за 7 дней.</p>
-    <div class="tbl">
-      <table>
-        <thead><tr><th>Канал</th><th>Подписчики</th><th>Охват поста</th><th>Индекс цитирования</th></tr></thead>
-        <tbody>
-          <tr><td><a href="https://t.me/biznesbezglyanca" target="_blank" rel="noopener">@biznesbezglyanca</a></td><td>258 485</td><td>107 200</td><td><span class="tag bad">2,2</span></td></tr>
-          <tr><td><a href="https://t.me/rrentabelno" target="_blank" rel="noopener">@rrentabelno</a></td><td>335 661</td><td>102 300</td><td><span class="tag bad">1,3</span></td></tr>
-          <tr><td><a href="https://t.me/adultbiz_real" target="_blank" rel="noopener">@adultbiz_real</a></td><td>159 680</td><td>48 200</td><td><span class="tag bad">7,6</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="src">Источник: TGStat, рейтинг «Бизнес и стартапы», tgstat.ru/ratings/channels?category=business.</p>
-  </section>
-
-  <section class="card">
-    <h2>Что мы измеряем</h2>
-    <ul>
-      <li>Клики по размещению: данные биржи по каждому каналу.</li>
-      <li>Новые пользователи бота по дням: выгрузка из бота. Метки в ссылках бот не принимает, поэтому каналы разводим по датам: один канал в день.</li>
-      <li>Заявки на консультацию: видите только вы, бот сообщений не принимает.</li>
-    </ul>
-    <p style="margin-top:10px">Главный показатель: цена одного человека, прошедшего тест, по каждому каналу. По нему решаем, куда докупать.</p>
+    <p class="src">Источник данных: tgstat.ru/ratings/channels, рубрики и сортировки по подписчикам, охвату и цитируемости, срез 23.10.2026.</p>
   </section>
 </div>
 
@@ -162,5 +172,16 @@ document.querySelectorAll('button[data-copy]').forEach(function(b){
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fallback)}else{fallback()}
   });
 });
+function recalc(){
+  var sum=0,reach=0,all=true;
+  document.querySelectorAll('tr[data-reach]').forEach(function(tr){
+    var p=parseFloat(tr.querySelector('input.price').value);var r=parseFloat(tr.getAttribute('data-reach'));
+    var c=tr.querySelector('.cpm');
+    if(p>0){c.textContent=Math.round(p/r*1000).toLocaleString('ru-RU');sum+=p;reach+=r}else{c.textContent='—';all=false}
+  });
+  document.getElementById('sum').textContent=sum>0?sum.toLocaleString('ru-RU'):'—';
+  document.getElementById('cpmall').textContent=(sum>0&&all)?Math.round(sum/reach*1000).toLocaleString('ru-RU'):'—';
+}
+document.querySelectorAll('input.price').forEach(function(i){i.addEventListener('input',recalc)});
 </script>
 </body></html>
