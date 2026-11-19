@@ -113,7 +113,7 @@ pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;
 <div class="top"><h1>SEO-воронка: сообщения и отработка возражений</h1>
 <p>Три пакета: <b>Старт 5 000 ₽, Стандарт 7 500 ₽, Максимум 8 000 ₽</b> <span class="chip">Старт</span><span class="chip c-std">Стандарт</span><span class="chip c-max">Максимум</span> Страница для клиента: <a href="https://murzzsite.github.io/seo-packages/" style="color:#1d4ed8;font-weight:600">https://murzzsite.github.io/seo-packages/</a></p>
 <p><a href="bot-promotion.html" style="color:#1d4ed8;font-weight:600">Отдельно: план продвижения бота и гайда →</a></p>
-<div class="tabs"><button class="tab on" data-t="funnel">Воронка по шагам</button><button class="tab" data-t="obj">Отработка возражений</button><button class="tab" data-t="obj2">Отработка возражений 2 · умный поиск</button></div>
+<div class="tabs"><button class="tab on" data-t="funnel">Воронка по шагам</button><button class="tab" data-t="obj">Отработка возражений</button><button class="tab" data-t="obj2">Отработка возражений 2 · умный поиск</button><button class="tab" data-t="pick">Подбор пакета по брифу</button></div>
 <input class="search" id="q" type="search" placeholder="Поиск по вопросам и сообщениям…">
 <span class="hint">Нажмите на строку или на «Копировать»: сообщение копируется сразу. Картинки: с телефона зажмите картинку и «Сохранить в Фото», с компьютера правая кнопка или «Скачать файл». Метки: <span class="tg hot">частый</span><span class="tg warn">⚠ осторожно</span><span class="tg money">про деньги</span></span></div>
 <div class="pane" id="pane-funnel">
@@ -725,6 +725,7 @@ https://murzzsite.github.io/webmaster-guide/
 </div></div>
 </div></div>
 <div class="pane" id="pane-obj2" hidden><div class="list"><iframe id="obj2frame" title="Отработка возражений 2" data-src="https://murzzsite.github.io/objection-search/" allow="clipboard-read; clipboard-write" style="width:100%;height:calc(100vh - 150px);min-height:640px;border:1px solid var(--border);border-radius:14px;background:#f5f2ec"></iframe><p style="margin:8px 2px 0;font-size:13px"><a href="https://murzzsite.github.io/objection-search/" target="_blank" rel="noopener" style="color:var(--accent-dark);font-weight:600">Открыть отдельным окном ↗</a></p></div></div>
+<div class="pane" id="pane-pick" hidden><div class="list"><iframe id="pickframe" title="Подбор пакета" data-src="https://murzzsite.github.io/objection-search/pick.html" allow="clipboard-read; clipboard-write" style="width:100%;height:calc(100vh - 150px);min-height:700px;border:1px solid var(--border);border-radius:14px;background:#f5f2ec"></iframe></div></div>
 <div class="pane" id="pane-obj" hidden>
 <div class="list">
 <div class="quick"><h3>Быстрые ответы</h3><div class="qbtns"><button class="qb" type="button" data-t="o1">Нет заявок с биржи</button><button class="qb" type="button" data-t="o3">Верните деньги</button><button class="qb" type="button" data-t="o9">Мне обещали лиды</button><button class="qb" type="button" data-t="o10">В договоре нет доп. трат</button><button class="qb" type="button" data-t="o39">Дорого</button><button class="qb" type="button" data-t="o36">Чем пакеты отличаются</button><button class="qb" type="button" data-t="o37">Какой пакет брать</button><button class="qb" type="button" data-t="o23">Показы есть, заявок нет</button><button class="qb" type="button" data-t="o14">Хочу расторгнуть</button><button class="qb" type="button" data-t="o50">Сайт не открывается</button><button class="qb" type="button" data-t="o35">Уже есть сайт</button><button class="qb" type="button" data-t="o51">Скиньте репозиторий</button><button class="qb" type="button" data-t="o64">Правки потом</button></div></div>
@@ -1099,7 +1100,7 @@ document.querySelector('.needbtn').onclick=function(){copyText(NEED,this,'Фор
 function toggle(it){it.classList.toggle('open');}
 document.querySelectorAll('.hd').forEach(h=>{h.onclick=e=>{if(e.target.closest('.cp'))return;toggle(h.parentNode);};h.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&e.target===h){e.preventDefault();toggle(h.parentNode);}};});
 document.querySelectorAll('.grp').forEach(g=>g.onclick=()=>g.parentNode.classList.toggle('closed'));
-function showTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelectorAll('.pane').forEach(p=>p.hidden=p.id!=='pane-'+t);var sq=document.getElementById('q'),hn=document.querySelector('.hint');if(sq)sq.style.display=(t==='obj2'||t==='obj')?'none':'';if(hn)hn.style.display=(t==='obj2'||t==='obj')?'none':'';if(t==='obj2'){var f=document.getElementById('obj2frame');if(f&&!f.src)f.src=f.dataset.src;}}
+function showTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelectorAll('.pane').forEach(p=>p.hidden=p.id!=='pane-'+t);var sq=document.getElementById('q'),hn=document.querySelector('.hint');if(sq)sq.style.display=(t==='obj2'||t==='obj'||t==='pick')?'none':'';if(hn)hn.style.display=(t==='obj2'||t==='obj'||t==='pick')?'none':'';if(t==='obj2'){var f=document.getElementById('obj2frame');if(f&&!f.src)f.src=f.dataset.src;}if(t==='pick'){var g=document.getElementById('pickframe');if(g&&!g.src)g.src=g.dataset.src;}}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{showTab(b.dataset.t);history.replaceState(null,'','#'+b.dataset.t);});
 function openId(id){const el=document.getElementById(id);if(!el)return;const pane=el.closest('.pane');if(pane)showTab(pane.id.replace('pane-',''));const g=el.closest('.gsec');if(g)g.classList.remove('closed');if(el.classList.contains('item'))el.classList.add('open');el.scrollIntoView({block:'start'});}
 document.querySelectorAll('.qb').forEach(b=>b.onclick=()=>{resetFilters();openId(b.dataset.t);});
@@ -1116,7 +1117,7 @@ function runSearch(){const v=q.value.trim().toLowerCase();
  document.querySelectorAll('.gsec').forEach(g=>{const any=[...g.querySelectorAll('.item')].some(it=>it.style.display!=='none');if(v){g.style.display=any?'':'none';if(any)g.classList.remove('closed');}else if(curSit===''){g.style.display='';}});}
 q.oninput=()=>{if(q.value.trim()&&curSit!=='')applySit('');runSearch();};
 const hs=location.hash.slice(1);
-if(hs==='obj'||hs==='obj2'||hs==='funnel')showTab(hs);else if(hs)openId(hs);
+if(hs==='obj'||hs==='obj2'||hs==='pick'||hs==='funnel')showTab(hs);else if(hs)openId(hs);
 
 /* === Отработка 1: master-detail === */
 (function(){
