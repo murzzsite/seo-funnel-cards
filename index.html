@@ -69,6 +69,27 @@ pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;
 .need{border-style:dashed;font-size:14px;color:var(--text-2)}
 .needbtn{margin-left:8px;font:600 13px 'Inter',sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
 @media(max-width:820px){.bd{padding-left:18px}.item.open .bd{grid-template-columns:1fr}.cp{display:none}}
+
+/* ===== Отработка 1: всё на виду, без вложенных раскрывашек ===== */
+#pane-obj .gsec{margin-top:6px}
+#pane-obj .gsec.closed .gbody{display:grid}
+#pane-obj .gbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;align-items:start;margin-top:10px}
+#pane-obj .grp{cursor:default;pointer-events:none;background:transparent;border:0;border-bottom:2px solid var(--accent);border-radius:0;padding:6px 2px 8px;font-size:20px}
+#pane-obj .grp .chev2{display:none}
+#pane-obj .grp:hover{background:transparent}
+#pane-obj .item .bd,#pane-obj .item.open .bd{display:block;padding:0 18px 16px 18px}
+#pane-obj .item .hd{cursor:default;align-items:flex-start;padding:14px 16px 8px}
+#pane-obj .item .hd:hover{background:transparent}
+#pane-obj .item .chev,#pane-obj .item .hd .cp{display:none}
+#pane-obj .item .hd .num{flex:0 0 28px;width:28px;height:28px;font-size:12px}
+#pane-obj .item .ttl{font-size:16px;line-height:1.35;padding-top:2px}
+#pane-obj .item .meta{display:none}
+#pane-obj .item pre{background:#f4f7fd;border:1px solid var(--accent-mid);font-size:14px;line-height:1.55;margin-bottom:10px}
+#pane-obj .item .btn{width:100%;padding:11px 14px;font-size:14px}
+#pane-obj .item:target{outline:3px solid var(--accent);outline-offset:2px}
+#pane-obj #o0{grid-column:1/-1}
+#pane-obj>.list>.item{margin-bottom:6px}
+@media(max-width:820px){#pane-obj .gbody{grid-template-columns:1fr}}
 </style></head><body>
 <div class="top"><h1>SEO-воронка: сообщения и отработка возражений</h1>
 <p>Три пакета: <b>Старт 5 000 ₽, Стандарт 7 500 ₽, Максимум 8 000 ₽</b> <span class="chip">Старт</span><span class="chip c-std">Стандарт</span><span class="chip c-max">Максимум</span> Страница для клиента: <a href="https://murzzsite.github.io/seo-packages/" style="color:#1d4ed8;font-weight:600">https://murzzsite.github.io/seo-packages/</a></p>
@@ -188,7 +209,7 @@ https://murzzsite.github.io/bot-token-guide/
 </div></div>
 <div class="gsec" id="g_f3" data-sit=""><button class="grp" type="button"><span>Три пакета и оплата</span><span class="cnt">13</span><span class="chev2"></span></button><div class="gbody"><section class="item" id="m10" data-sit="">
 <div class="hd" role="button" tabindex="0"><span class="num">10</span><span class="ttl">/пакеты_seo (вместо /что_входит_в_7500)</span><button class="cp" type="button" data-i="9">Копировать</button><span class="chev"></span></div>
-<div class="bd"><div class="pic"><img src="img/packages.png" alt="/пакеты_seo (вместо /что_входит_в_7500, части 1 и 2)" loading="lazy" width="794"><a class="dl" href="img/packages.png" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Картинка + шаблонный текст без подстановок: клиент сам выбирает цифру, дальше отправляете подходящий «/ответ_на_…». Ставьте сразу после «Принимаю»</div><pre>Здравствуйте! @{НИК_КЛИЕНТА} Упаковка принята, спасибо! 🙌 Следующий шаг: сделать так, чтобы вас находили в поиске сами, без ежедневной рекламы.
+<div class="bd"><div class="pic"><img src="img/packages.png?v=2" alt="/пакеты_seo (вместо /что_входит_в_7500, части 1 и 2)" loading="lazy" width="794"><a class="dl" href="img/packages.png?v=2" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Картинка + шаблонный текст без подстановок: клиент сам выбирает цифру, дальше отправляете подходящий «/ответ_на_…». Ставьте сразу после «Принимаю»</div><pre>Здравствуйте! @{НИК_КЛИЕНТА} Упаковка принята, спасибо! 🙌 Следующий шаг: сделать так, чтобы вас находили в поиске сами, без ежедневной рекламы.
 
 SEO — это реклама вашего сайта в поиске: сайт на вашем домене начинает появляться в Яндексе и Google, когда ищут ваши услуги, и продолжает приводить людей без платы за каждый клик. Мы уже знаем ваш бизнес и цели по брифу, поэтому подбираем пакет под вашу задачу.
 
@@ -809,7 +830,7 @@ SEO — это реклама вашего сайта в поиске: сайт 
 </div></div>
 <div class="gsec closed" id="g_o4" data-sit="doubt"><button class="grp" type="button"><span>SEO и результат</span><span class="cnt">11</span><span class="chev2"></span></button><div class="gbody"><section class="item" id="o15" data-sit="doubt">
 <div class="hd" role="button" tabindex="0"><span class="num">15</span><span class="ttl">«Это что, реклама? Вы мне будете её настраивать?»<span class="tg hot">частый</span></span><button class="cp" type="button" data-i="54">Копировать</button><span class="chev"></span></div>
-<div class="bd"><div class="pic"><img src="img/packages.png" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>Да, это реклама вашего сайта, только в поиске: мы настраиваем сайт так, чтобы он показывался в Яндексе и Google. За каждый клик вы не платите, и работа копится: статьи и страницы остаются на сайте.</pre><button class="btn" data-i="54">Скопировать текст</button></div></div>
+<div class="bd"><div class="pic"><img src="img/packages.png?v=2" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png?v=2" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>Да, это реклама вашего сайта, только в поиске: мы настраиваем сайт так, чтобы он показывался в Яндексе и Google. За каждый клик вы не платите, и работа копится: статьи и страницы остаются на сайте.</pre><button class="btn" data-i="54">Скопировать текст</button></div></div>
 </section>
 <section class="item" id="o16" data-sit="doubt">
 <div class="hd" role="button" tabindex="0"><span class="num">16</span><span class="ttl">«Почему результат только через 2–4 месяца? Реклама даёт заявки сразу»</span><button class="cp" type="button" data-i="55">Копировать</button><span class="chev"></span></div>
@@ -896,12 +917,12 @@ SEO — это реклама вашего сайта в поиске: сайт 
 </div></div>
 <div class="gsec closed" id="g_o6" data-sit="doubt"><button class="grp" type="button"><span>Пакеты и цена</span><span class="cnt">5</span><span class="chev2"></span></button><div class="gbody"><section class="item" id="o36" data-sit="doubt">
 <div class="hd" role="button" tabindex="0"><span class="num">36</span><span class="ttl">«Чем пакеты отличаются?»<span class="tg hot">частый</span></span><button class="cp" type="button" data-i="75">Копировать</button><span class="chev"></span></div>
-<div class="bd"><div class="pic"><img src="img/packages.png" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>«Старт» — сайт на вашем домене и SEO-основа. «Стандарт» добавляет блог со статьями, углублённые Распаковку и Рекомендации и материалы для продаж. «Максимум» добавляет посевы в Telegram и 2 статьи в неделю в первый месяц.
+<div class="bd"><div class="pic"><img src="img/packages.png?v=2" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png?v=2" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>«Старт» — сайт на вашем домене и SEO-основа. «Стандарт» добавляет блог со статьями, углублённые Распаковку и Рекомендации и материалы для продаж. «Максимум» добавляет посевы в Telegram и 2 статьи в неделю в первый месяц.
 Состав: https://murzzsite.github.io/seo-packages/</pre><button class="btn" data-i="75">Скопировать текст</button></div></div>
 </section>
 <section class="item" id="o37" data-sit="doubt">
 <div class="hd" role="button" tabindex="0"><span class="num">37</span><span class="ttl">«Какой пакет брать?»<span class="tg hot">частый</span></span><button class="cp" type="button" data-i="76">Копировать</button><span class="chev"></span></div>
-<div class="bd"><div class="pic"><img src="img/packages.png" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>Если нужно, чтобы сайт находили и клиенты приходили из поиска, берут «Стандарт»: там блог, который копит трафик. «Старт» подойдёт, если нужна только основа. «Максимум» нужен, если важны быстрые заявки из Telegram.
+<div class="bd"><div class="pic"><img src="img/packages.png?v=2" alt="Пакеты" loading="lazy" width="794"><a class="dl" href="img/packages.png?v=2" download="packages.png">Скачать файл</a></div><div class="txt"><div class="meta">Ответ клиенту. Картинку отправляйте вместе с текстом</div><pre>Если нужно, чтобы сайт находили и клиенты приходили из поиска, берут «Стандарт»: там блог, который копит трафик. «Старт» подойдёт, если нужна только основа. «Максимум» нужен, если важны быстрые заявки из Telegram.
 Состав: https://murzzsite.github.io/seo-packages/</pre><button class="btn" data-i="76">Скопировать текст</button></div></div>
 </section>
 <section class="item" id="o38" data-sit="doubt">
