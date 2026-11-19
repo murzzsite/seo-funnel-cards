@@ -108,6 +108,12 @@ pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;
 .o1v .row{display:flex;gap:10px;flex-wrap:wrap}
 .o1v .row .btn{padding:12px 22px;font-size:15px}
 .o1s{width:100%;box-sizing:border-box;font:14px 'Inter',sans-serif;border:1px solid var(--border,#ddd);border-radius:10px;padding:9px 12px;margin:4px 0 6px;position:sticky;top:0;background:#fff}
+#pane-funnel .gnav,#pane-funnel .gsec{display:none!important}
+#pane-funnel.mdon .list>.o1m{display:grid}
+.o1v pre{min-height:0}#pane-funnel .o1v pre{flex:0 0 auto;max-height:none;overflow:visible}
+.o1v .fmeta{font-size:13px;color:#777;line-height:1.4}
+.o1v .fpic{margin-top:6px}.o1v .fpic img{max-width:100%;border-radius:10px;border:1px solid var(--border,#e3e3e3)}
+.o1v .fpic a{display:inline-block;margin-top:6px;font-size:13px}
 @media(max-width:820px){.o1m{grid-template-columns:1fr;height:auto}.o1l{height:260px}.o1v{height:auto}}
 </style></head><body>
 <div class="top"><h1>SEO-воронка: сообщения и отработка возражений</h1>
@@ -118,14 +124,8 @@ pre{white-space:pre-wrap;word-wrap:break-word;font:14px/1.55 'Inter',sans-serif;
 <span class="hint">Нажмите на строку или на «Копировать»: сообщение копируется сразу. Картинки: с телефона зажмите картинку и «Сохранить в Фото», с компьютера правая кнопка или «Скачать файл». Метки: <span class="tg hot">частый</span><span class="tg warn">⚠ осторожно</span><span class="tg money">про деньги</span></span></div>
 <div class="pane" id="pane-funnel">
 <div class="list">
-<nav class="gnav"><a href="#g_f1" data-g="g_f1" data-sit="">Начало работы с клиентом <b>7</b></a><a href="#g_f2" data-g="g_f2" data-sit="">Сдача упаковки <b>3</b></a><a href="#g_f3" data-g="g_f3" data-sit="">Три пакета и оплата <b>14</b></a><a href="#g_f4" data-g="g_f4" data-sit="">Домен и перенос <b>15</b></a><a href="#g_f5" data-g="g_f5" data-sit="">Кабинет и ускорители <b>5</b></a></nav>
-<div class="gsec" id="g_f1" data-sit=""><button class="grp" type="button"><span>Начало работы с клиентом</span><span class="cnt">7</span><span class="chev2"></span></button><div class="gbody"><section class="item" id="m1" data-sit="">
-<div class="hd" role="button" tabindex="0"><span class="num">1</span><span class="ttl">/первое_сообщение</span><button class="cp" type="button" data-i="0">Копировать</button><span class="chev"></span></div>
-<div class="bd"><div class="pic none">Без картинки</div><div class="txt"><div class="meta">Без абзаца про проектного менеджера</div><pre>Это рабочий чат — здесь будем вести ваш проект от сегодняшнего дня до поставленных задач.
-
-Рады, что вы с нами 🙏</pre><button class="btn" data-i="0">Скопировать текст</button></div></div>
-</section>
-<section class="item" id="m2" data-sit="">
+<nav class="gnav"><a href="#g_f1" data-g="g_f1" data-sit="">Начало работы с клиентом <b>6</b></a><a href="#g_f2" data-g="g_f2" data-sit="">Сдача упаковки <b>3</b></a><a href="#g_f3" data-g="g_f3" data-sit="">Три пакета и оплата <b>14</b></a><a href="#g_f4" data-g="g_f4" data-sit="">Домен и перенос <b>15</b></a><a href="#g_f5" data-g="g_f5" data-sit="">Кабинет и ускорители <b>5</b></a></nav>
+<div class="gsec" id="g_f1" data-sit=""><button class="grp" type="button"><span>Начало работы с клиентом</span><span class="cnt">6</span><span class="chev2"></span></button><div class="gbody"><section class="item" id="m2" data-sit="">
 <div class="hd" role="button" tabindex="0"><span class="num">2</span><span class="ttl">/что_будет_и_когда (новое, сразу после первого сообщения)</span><button class="cp" type="button" data-i="1">Копировать</button><span class="chev"></span></div>
 <div class="bd"><div class="pic"><img src="img/plan.png" alt="/что_будет_и_когда (новое, сразу после первого сообщения)" loading="lazy" width="794"><a class="dl" href="img/plan.png" download="plan.png">Скачать файл</a></div><div class="txt"><div class="meta">Картинка + текст. Клиент отвечает своими словами, за что платит сейчас и дальше: если понял неверно, это видно в первый день и можно поправить. Подставлять ничего не нужно</div><pre>Чтобы вам было спокойно и понятно, коротко о том, как пойдёт работа:
 
@@ -1157,7 +1157,7 @@ document.querySelector('.needbtn').onclick=function(){copyText(NEED,this,'Фор
 function toggle(it){it.classList.toggle('open');}
 document.querySelectorAll('.hd').forEach(h=>{h.onclick=e=>{if(e.target.closest('.cp'))return;toggle(h.parentNode);};h.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&e.target===h){e.preventDefault();toggle(h.parentNode);}};});
 document.querySelectorAll('.grp').forEach(g=>g.onclick=()=>g.parentNode.classList.toggle('closed'));
-function showTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelectorAll('.pane').forEach(p=>p.hidden=p.id!=='pane-'+t);var sq=document.getElementById('q'),hn=document.querySelector('.hint');if(sq)sq.style.display=(t==='obj2'||t==='obj'||t==='pick')?'none':'';if(hn)hn.style.display=(t==='obj2'||t==='obj'||t==='pick')?'none':'';if(t==='obj2'){var f=document.getElementById('obj2frame');if(f&&!f.src)f.src=f.dataset.src;}if(t==='pick'){var g=document.getElementById('pickframe');if(g&&!g.src)g.src=g.dataset.src;}}
+function showTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelectorAll('.pane').forEach(p=>p.hidden=p.id!=='pane-'+t);var sq=document.getElementById('q'),hn=document.querySelector('.hint');if(sq)sq.style.display=(t==='obj2'||t==='obj'||t==='pick'||t==='funnel')?'none':'';if(hn)hn.style.display=(t==='obj2'||t==='obj'||t==='pick'||t==='funnel')?'none':'';if(t==='obj2'){var f=document.getElementById('obj2frame');if(f&&!f.src)f.src=f.dataset.src;}if(t==='pick'){var g=document.getElementById('pickframe');if(g&&!g.src)g.src=g.dataset.src;}}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{showTab(b.dataset.t);history.replaceState(null,'','#'+b.dataset.t);});
 function openId(id){const el=document.getElementById(id);if(!el)return;const pane=el.closest('.pane');if(pane)showTab(pane.id.replace('pane-',''));const g=el.closest('.gsec');if(g)g.classList.remove('closed');if(el.classList.contains('item'))el.classList.add('open');el.scrollIntoView({block:'start'});}
 document.querySelectorAll('.qb').forEach(b=>b.onclick=()=>{resetFilters();openId(b.dataset.t);});
@@ -1219,4 +1219,54 @@ if(hs==='obj'||hs==='obj2'||hs==='pick'||hs==='funnel')showTab(hs);else if(hs)op
  window.o1show=show;
  show(items[0].id);
 })();
+
+/* === Воронка по шагам: master-detail === */
+(function(){
+ const pane=document.getElementById('pane-funnel');const list=pane.querySelector('.list');
+ const items=[...pane.querySelectorAll('.item')];
+ const wrap=document.createElement('div');wrap.className='o1m';
+ const L=document.createElement('div');L.className='o1l';
+ const V=document.createElement('div');V.className='o1v';
+ const si=document.createElement('input');si.className='o1s';si.placeholder='Найти по слову в списке…';L.appendChild(si);
+ const rows=[];let lastG='';
+ items.forEach(it=>{
+  const g=it.closest('.gsec').querySelector('.grp span').textContent;
+  if(g!==lastG){const h=document.createElement('h4');h.textContent=g;L.appendChild(h);lastG=g;rows.push({h,g});}
+  const num=it.querySelector('.num').textContent.trim();
+  const ttlEl=it.querySelector('.ttl');
+  const title=ttlEl.textContent.replace(/\s+/g,' ').trim();
+  const b=document.createElement('button');b.type='button';b.textContent=num+'. '+title;
+  b.onclick=()=>show(it.id);L.appendChild(b);
+  rows.push({b,it,g,title,num,pre:it.querySelector('pre').textContent,id:it.id});
+ });
+ wrap.append(L,V);list.insertBefore(wrap,list.firstChild);pane.classList.add('mdon');
+ function show(id){
+  const r=rows.find(x=>x.id===id);if(!r)return;
+  rows.forEach(x=>x.b&&x.b.classList.toggle('on',x===r));
+  V.innerHTML='';
+  const gn=document.createElement('div');gn.className='gn';gn.textContent=r.g;
+  const h=document.createElement('h3');h.textContent=r.num+'. '+r.title;
+  const mt=r.it.querySelector('.meta');
+  const pre=document.createElement('pre');pre.contentEditable='true';pre.textContent=r.pre;
+  const row=document.createElement('div');row.className='row';
+  const cb=document.createElement('button');cb.className='btn';cb.textContent='Скопировать текст';
+  cb.onclick=()=>copyText(pre.innerText,cb,'Скопировано ✓','Скопировать текст');
+  row.appendChild(cb);
+  V.append(gn,h);
+  if(mt){const m=document.createElement('div');m.className='fmeta';m.textContent=mt.textContent;V.appendChild(m);}
+  V.append(pre,row);
+  const img=r.it.querySelector('.pic img');
+  if(img){const d=document.createElement('div');d.className='fpic';const i2=document.createElement('img');i2.src=img.getAttribute('src');i2.alt='';const a=document.createElement('a');a.href=img.getAttribute('src');a.download='';a.textContent='Скачать картинку';d.append(i2,document.createElement('br'),a);V.appendChild(d);}
+  L.querySelector('button.on')?.scrollIntoView({block:'nearest'});
+ }
+ si.oninput=()=>{const v=si.value.trim().toLowerCase();let lastH=null;
+  rows.forEach(r=>{if(r.h){lastH=r.h;r.h._n=0;return;}
+   const m=!v||(r.title+' '+r.pre).toLowerCase().includes(v);r.b.style.display=m?'':'none';if(m)lastH._n=(lastH._n||0)+1;});
+  rows.forEach(r=>{if(r.h)r.h.style.display=(!v||r.h._n)?'':'none';});};
+ window.fshow=show;
+ const hid=location.hash.slice(1);
+ show(rows.some(x=>x.id===hid)?hid:items[0].id);
+})();
+
+if(!location.hash.slice(1)||location.hash.slice(1)==='funnel')showTab('funnel');
 </script></body></html>
